@@ -1,18 +1,23 @@
-import { initializeApp } from 'firebase/app';
+import { initializeApp } from 'firebase/app'
+import { getAuth } from "firebase/auth"
 
-const config = useRuntimeConfig().public;
 
+export default defineNuxtPlugin(nuxtApp => {
+    const config = useRuntimeConfig().public;
 
-const firebaseConfig = {
-    apiKey: config.FB_API_KEY,
-    authDomain: config.FB_AUTH_DOMAIN,
-    projectId: config.FB_PROJECT_ID,
-    storageBucket: config.FB_STORAGE_BUCKET,
-    messagingSenderId: config.FB_MESSAGING_SENDER_ID,
-    appId: config.FB_APP_ID,
-};
+    const firebaseConfig = {
+        apiKey: config.FB_API_KEY,
+        authDomain: config.FB_AUTH_DOMAIN,
+        projectId: config.FB_PROJECT_ID,
+        storageBucket: config.FB_STORAGE_BUCKET,
+        messagingSenderId: config.FB_MESSAGING_SENDER_ID,
+        appId: config.FB_APP_ID,
+    };
 
-export default function useFirebase() {
     const app = initializeApp(firebaseConfig);
-    return { app };
-};
+
+    const auth = getAuth(app);
+
+    nuxtApp.vueApp.provide('auth', auth);
+    nuxtApp.provide('auth', auth);
+})

@@ -1,28 +1,42 @@
-import { browserLocalPersistence, createUserWithEmailAndPassword, getAuth, setPersistence, signInWithEmailAndPassword, signOut } from "firebase/auth";
-import useFirebase from "~/plugins/firebase.client";
+import { getAuth, setPersistence, signInWithEmailAndPassword, 
+    browserLocalPersistence,
+    createUserWithEmailAndPassword, signOut, onAuthStateChanged } from "firebase/auth"
 
-export default function useAuth() {
-    const user =  useState('userStore', () => ({}));
-    const { app } = useFirebase();
-    const auth = getAuth(app);
+export default function useAuth(auth: any) {
+  const user = useState("userStore", () => ({}))
+  const errorBag = ref({
+    email: null,
+    password: null,
+    name: null,
+  })
 
-    async function login ({ email, password }: any) {
-        const persistance = await setPersistence(auth, browserLocalPersistence);
-        const user = await signInWithEmailAndPassword(auth, email, password);
-        const userToken = await user.user.getIdToken();
 
-        console.log(userToken);
-    };
+  function login({ email, password }:  any) {
 
-    async function singUp({ email, password }: any ) {
-        const persistance = await setPersistence(auth, browserLocalPersistence);
-        const user = await createUserWithEmailAndPassword(auth, email, password);
-        const userToken = await user.user.getIdToken();
+    setPersistence(auth, browserLocalPersistence).then(() => {
+      signInWithEmailAndPassword(auth, email, password).then((userDetails) => {
+        user.value = userDetails.user
+        userDetails.user.getIdToken().then((token) => {
 
-        console.log(userToken);
-    };
+        })
+      })
+    })
+  }
 
-    async function logout() {
-        const logout = await auth.signOut();
-    }
+  function logout() {
+    auth.signOut().then(() => {})
+  }
+
+  function signUp({ email, password, name }:  any) {
+    setPersistence(auth, browserLocalPersistence).then(() => {
+      createUserWithEmailAndPassword(auth, email, password).then((userDetails) => {
+        user.value = userDetails.user
+        userDetails.user.getIdToken().then((token) => {
+
+        })
+      })
+    })
+  }
+
+  return { user, login, signUp, logout, errorBag }
 }
