@@ -1,7 +1,9 @@
 import { setPersistence, signInWithEmailAndPassword, browserLocalPersistence, createUserWithEmailAndPassword } from "firebase/auth";
 
+export const user = () => useState<Object>("userStore", () => ({}));
+
 export default function useAuth(auth: any) {
-  const user = useState("userStore", () => ({}));
+
   const errorBag = ref({
     email: null,
     password: null,
@@ -13,7 +15,7 @@ export default function useAuth(auth: any) {
 
     setPersistence(auth, browserLocalPersistence).then(() => {
       signInWithEmailAndPassword(auth, email, password).then((userDetails) => {
-        user.value = userDetails.user;
+        user().value = userDetails.user;
         userDetails.user.getIdToken().then((token) => {
 
         });
@@ -26,7 +28,7 @@ export default function useAuth(auth: any) {
 
     setPersistence(auth, browserLocalPersistence).then(() => {
       createUserWithEmailAndPassword(auth, email, password).then((userDetails) => {
-        user.value = userDetails.user
+        user().value = userDetails.user
         userDetails.user.getIdToken().then((token) => {
 
         });
@@ -39,5 +41,5 @@ export default function useAuth(auth: any) {
   }
 
 
-  return { user, login, signUp, logout, errorBag };
+  return { login, signUp, logout, errorBag };
 };

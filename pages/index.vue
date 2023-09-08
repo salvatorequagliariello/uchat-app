@@ -1,15 +1,27 @@
 <script setup>
-    definePageMeta({
-        middleware: "firebase-auth",
-    });
+    let loggedIn = false;
+
+    const enter = () => {
+        loggedIn = !loggedIn;
+        console.log(loggedIn);
+    }
 </script>
 
 <template>
     <div>
-        <h1>Chatsd view</h1>
-        <button @click="!userto">uer</button>
+        <div class="login-page" :v-if="!loggedIn">
+            <LoginForm type="signup" />
+            <button @click="enter">entra</button>
+        </div>
+        <div v-if="loggedIn">
+            Chat view
+            <button @click="enter">esci</button>
+        </div>
     </div>
 </template>
 
 <style>
+    .login-page {
+        background-color: white;
+    }
 </style>

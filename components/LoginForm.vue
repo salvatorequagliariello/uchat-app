@@ -1,8 +1,6 @@
 <script setup>
     const nuxt = useNuxtApp();
     const firebaseApp = nuxt.$auth;
-    console.log(firebaseApp);
-
     const {login, signUp, errorBag} = useAuth(firebaseApp);
 
     const formProps = defineProps({
