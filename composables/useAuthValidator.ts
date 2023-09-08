@@ -16,5 +16,5 @@ export default function useAuthValidator({ email, password, name }: any, type: s
         });
 
         return loginSchema.parse({ email, password, name });
-    }
+    };
 };

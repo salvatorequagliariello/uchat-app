@@ -1,7 +1,6 @@
 
-
 <template>
     <div>
-        sign in
+        <LoginForm type="login" />
     </div>
 </template>

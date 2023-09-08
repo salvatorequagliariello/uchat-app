@@ -3,7 +3,7 @@
     const firebaseApp = nuxt.$auth;
     console.log(firebaseApp);
 
-    const {login, signUp} = useAuth(firebaseApp);
+    const {login, signUp, errorBag} = useAuth(firebaseApp);
 
     const formProps = defineProps({
         type: {
@@ -17,16 +17,29 @@
         password: "",
     });
 
-    function process() {
-        signUp(userForm)
+    function processLogin() {
+        if (formProps.type == "login") {
+            login(userForm);
+        } else {
+            signUp(userForm);
+        };
     };
 </script>
 
 <template>
-    <form class="sign-in-form" @submit.prevent="process">
-        <input type="text" placeholder="Name"  v-model="userForm.name"/>
-        <input type="email" placeholder="Email" v-model="userForm.email"/>
-        <input type="password" placeholder="Password" v-model="userForm.password"/>
+    <form class="sign-in-form" @submit.prevent="handleSubmit">
+        <div class="form-field">
+            <input type="text" placeholder="Name" v-model="userForm.name" v-if="type == 'signup'" />
+            <p v-if="errorBag.name">{{ errorBag.name }}</p>
+        </div>
+        <div class="form-field">
+            <input type="email" placeholder="Email" v-model="userForm.email"/>
+            <p v-if="errorBag.email">{{ errorBag.email }}</p>
+        </div>
+        <div class="form-field">
+            <input type="password" placeholder="Password" v-model="userForm.password"/>
+            <p v-if="errorBag.password">{{ errorBag.password }}</p>
+        </div>
         <button type="submit">{{ type == "login" ? "Login" : "Register" }}</button>
     </form>
 </template>
@@ -39,5 +52,10 @@
         margin: 0 auto;
         gap: 2rem;
     };
+
+    .form-field {
+        display: flex;
+        flex-direction: column;
+    }
 
 </style>
