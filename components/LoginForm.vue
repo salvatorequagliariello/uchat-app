@@ -3,7 +3,7 @@
     const firebaseApp = nuxt.$auth;
     console.log(firebaseApp);
 
-    const {login, signUp} = useAuth(firebaseApp)
+    const {login, signUp} = useAuth(firebaseApp);
 
     const formProps = defineProps({
         type: {
@@ -33,7 +33,7 @@
     </form>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
     .sign-in-form {
         display: flex;
         flex-direction: column;
