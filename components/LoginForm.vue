@@ -19,9 +19,7 @@
 
     function process() {
         signUp(userForm)
-    }
-
-
+    };
 </script>
 
 <template>
