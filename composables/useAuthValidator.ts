@@ -37,8 +37,8 @@ export default function useAuthValidator({ email, password, name }: any, type: s
 
             for (let i = 0; i < zodIssues.length; i++) {
                 errors[zodIssues[i].path[0]] = zodIssues[i].message;
-              }
             };
+        };
 
         return errors;
     }

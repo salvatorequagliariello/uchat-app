@@ -5,37 +5,43 @@ export const user = () => useState("userStore", () => ({}));
 export default function useAuth(auth: any) {
 
   const errorBag = ref({
-    email: null,
-    password: null,
-    name: null
+    authErrors: {
+        email: null,
+        password: null,
+        name: null
+    },
+    firebaseLoginErrors: {
+        isAnyError: false,
+        error: "",
+    },
+    firebaseSignUpErrors: {
+        isAnyError: false,
+        error: "",
+    }
   });
 
-  function login({ email, password }:  any) {
+  const login = async ({ email, password }:  any) => {
     const validatedData = useAuthValidator({ email, password }, "login");
 
-    setPersistence(auth, browserLocalPersistence).then(() => {
-      signInWithEmailAndPassword(auth, email, password).then((userDetails) => {
+      try {
+        const userDetails = await signInWithEmailAndPassword(auth, email, password);
         user().value = userDetails.user;
-        userDetails.user.getIdToken().then((token) => {
-
-        });
-      });
-    });
-  };
+      } catch (error: any) {
+        errorBag.value.firebaseLoginErrors.isAnyError = true;
+        errorBag.value.firebaseLoginErrors.error = error;
+      }
+    };
   
-  function signUp({ email, password, name, image }:  any) {
+  async function signUp({ email, password, name, image }:  any) {
     const validatedData = useAuthValidator({ email, password, name }, "signup");
 
-    setPersistence(auth, browserLocalPersistence).then(() => {
-      createUserWithEmailAndPassword(auth, email, password).then((userDetails) => {
-        user().value = userDetails.user
-        userDetails.user.getIdToken().then((token) => {
-
-        });
-      });
-    });
-
-
+    try {
+      const userDetails = await createUserWithEmailAndPassword(auth, email, password);
+      user().value = userDetails.user;
+    } catch (error: any) {
+      errorBag.value.firebaseSignUpErrors.isAnyError = true;
+      errorBag.value.firebaseSignUpErrors.error = error;
+    }
   };
 
   function logout() {
