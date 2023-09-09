@@ -1,18 +1,20 @@
 <script setup>
-    const nuxt = useNuxtApp();
-    const firebaseApp = nuxt.$auth;
-    const {login, signUp, errorBag} = useAuth(firebaseApp);
-
     const formProps = defineProps({
         type: {
             type: String,
         }
     });
 
+    const nuxt = useNuxtApp();
+    const firebaseApp = nuxt.$auth;
+    const {login, signUp, errorBag} = useAuth(firebaseApp);
+
+
     const userForm = reactive({
-        name: "",
         email: "",
         password: "",
+        name: "",
+        image: ""
     });
 
     function processLogin() {
@@ -36,6 +38,10 @@
         </div>
         <div class="form-field">
             <input type="password" placeholder="Password" v-model="userForm.password"/>
+            <p v-if="errorBag.password">{{ errorBag.password }}</p>
+        </div>
+        <div class="form-field">
+            <input type="file" placeholder="Password" :on-change="userForm.image" accept="image/apng, image/bmp, image/gif, image/jpeg, image/pjpeg, image/png"/>
             <p v-if="errorBag.password">{{ errorBag.password }}</p>
         </div>
         <button type="submit">{{ type == "login" ? "Login" : "Register" }}</button>

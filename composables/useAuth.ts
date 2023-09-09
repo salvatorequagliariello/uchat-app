@@ -1,6 +1,6 @@
 import { setPersistence, signInWithEmailAndPassword, browserLocalPersistence, createUserWithEmailAndPassword } from "firebase/auth";
 
-export const user = () => useState<Object>("userStore", () => ({}));
+export const user = () => useState("userStore", () => ({}));
 
 export default function useAuth(auth: any) {
 
@@ -23,7 +23,7 @@ export default function useAuth(auth: any) {
     });
   };
   
-  function signUp({ email, password, name }:  any) {
+  function signUp({ email, password, name, image }:  any) {
     const validatedData = useAuthValidator({ email, password, name }, "signup");
 
     setPersistence(auth, browserLocalPersistence).then(() => {
@@ -34,6 +34,8 @@ export default function useAuth(auth: any) {
         });
       });
     });
+
+
   };
 
   function logout() {
