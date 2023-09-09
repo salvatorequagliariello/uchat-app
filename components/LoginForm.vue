@@ -7,6 +7,8 @@
 
     const nuxt = useNuxtApp();
     const firebaseApp = nuxt.$auth;
+    const storage = nuxt.$storage;
+
     const {login, signUp, errorBag} = useAuth(firebaseApp);
 
 

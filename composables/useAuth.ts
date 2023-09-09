@@ -1,9 +1,14 @@
-import { setPersistence, signInWithEmailAndPassword, browserLocalPersistence, createUserWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword, Auth } from "firebase/auth";
+import { getStorage, uploadBytesResumable, getDownloadURL, } from "firebase/storage";
+import { ref as storageRef } from "firebase/storage";
 
 export const user = () => useState("userStore", () => ({}));
 
-export default function useAuth(auth: any) {
-
+export default function useAuth() {
+  const nuxt = useNuxtApp();
+  const auth: any = nuxt.$auth;
+  const storage: any = nuxt.$storage;
+  
   const errorBag = ref({
     authErrors: {
         email: null,
@@ -17,6 +22,10 @@ export default function useAuth(auth: any) {
     firebaseSignUpErrors: {
         isAnyError: false,
         error: "",
+    },
+    uploadError: {
+      isAnyError: false,
+      error: "",
     }
   });
 
@@ -38,6 +47,23 @@ export default function useAuth(auth: any) {
     try {
       const userDetails = await createUserWithEmailAndPassword(auth, email, password);
       user().value = userDetails.user;
+      const firebaseRef = storageRef(storage, userDetails.user.uid);
+      const uploadTask = uploadBytesResumable(firebaseRef, image);
+
+      uploadTask.on('state_changed',
+        (snapshot) => {
+          return;
+        },
+        (error) => {
+          errorBag.value.uploadError.isAnyError = true;
+          return undefined;
+        },
+        () => {
+          getDownloadURL(uploadTask.snapshot.ref).then(downloadUrl => {
+            console.log("File available at", downloadUrl)
+          })
+        }
+      );
     } catch (error: any) {
       errorBag.value.firebaseSignUpErrors.isAnyError = true;
       errorBag.value.firebaseSignUpErrors.error = error;
