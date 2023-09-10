@@ -20,10 +20,6 @@
             <LoginForm type="signup" />
             <button @click="enter">entra</button>
         </div>
-        <div v-else>
-            Chat view
-            <button @click="enter">esci</button>
-        </div>
     </div>
 </template>
 

@@ -1,13 +1,16 @@
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { getStorage, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { ref as storageRef } from "firebase/storage";
+import { doc, setDoc } from "firebase/firestore";
 
 export const user = () => useState("userStore", () => ({}));
 
 export default function useAuth() {
   const nuxt = useNuxtApp();
-  const auth: any = nuxt.$auth;
-  const storage: any = nuxt.$storage;
+
+  const auth = nuxt.$auth;
+  const storage = nuxt.$storage;
+  const db = nuxt.$firestore;
   
   const errorBag = ref({
     authErrors: {
@@ -29,20 +32,17 @@ export default function useAuth() {
     }
   });
 
-  const login = async ({ email, password }:  any) => {
-    const validatedData = useAuthValidator({ email, password }, "login");
+  const login = async ({ email, password }) => {
 
       try {
         const userDetails = await signInWithEmailAndPassword(auth, email, password);
         user().value = userDetails.user;
-      } catch (error: any) {
-        errorBag.value.firebaseLoginErrors.isAnyError = true;
-        errorBag.value.firebaseLoginErrors.error = error;
+      } catch (error) {
+        console.log(error);
       }
     };
   
-  async function signUp({ email, password, name, image }:  any) {
-    const validatedData = useAuthValidator({ email, password, name }, "signup");
+  async function signUp({ email, password, name, image }) {
 
     try {
       const userDetails = await createUserWithEmailAndPassword(auth, email, password);
@@ -55,21 +55,28 @@ export default function useAuth() {
           return;
         },
         (error) => {
-          errorBag.value.uploadError.isAnyError = true;
-          return undefined;
+          console.log(error);
         },
         () => {
           getDownloadURL(uploadTask.snapshot.ref).then(async (downloadUrl) => {
             await updateProfile(userDetails.user, {
-              displayName: name,
+              name,
               photoURL: downloadUrl
-            })
-          })
+            });
+
+            await setDoc(doc(db, "users", userDetails.user.uid), {
+              uid: userDetails.user.uid,
+              name,
+              email,
+              photoUrl: downloadUrl
+            });
+          });
         }
       );
-    } catch (error: any) {
-      errorBag.value.firebaseSignUpErrors.isAnyError = true;
-      errorBag.value.firebaseSignUpErrors.error = error;
+
+
+    } catch (error) {
+      console.log(error);
     }
   };
 

@@ -28,18 +28,6 @@ export default function useAuthValidator({ email, password, name }: any, type: s
         };
 
     } catch (error) {
-        let errors: any = {
-            flag: false
-        };
-
-        if (error instanceof z.ZodError) {
-            const zodIssues = error.issues;
-
-            for (let i = 0; i < zodIssues.length; i++) {
-                errors[zodIssues[i].path[0]] = zodIssues[i].message;
-            };
-        };
-
-        return errors;
+        console.log(error);
     }
 };

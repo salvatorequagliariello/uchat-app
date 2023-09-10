@@ -19,7 +19,7 @@ export default defineNuxtPlugin(nuxtApp => {
     const app = initializeApp(firebaseConfig);
 
     const auth = getAuth(app);
-    const storage = getStorage();
+    const storage = getStorage(app);
     const firestore = getFirestore(app);
 
     nuxtApp.vueApp.provide('auth', auth);

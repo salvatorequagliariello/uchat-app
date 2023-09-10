@@ -5,12 +5,7 @@
         }
     });
 
-    const nuxt = useNuxtApp();
-    const firebaseApp = nuxt.$auth;
-    const storage = nuxt.$storage;
-
-    const {login, signUp, errorBag} = useAuth(firebaseApp);
-
+    const {login, signUp, errorBag} = useAuth();
 
     const userForm = reactive({
         email: "",
@@ -19,10 +14,10 @@
         image: ""
     });
 
-    function processLogin() {
+    function handleSubmit() {
         if (formProps.type == "login") {
             login(userForm);
-        } else {
+        } else if (formProps.type == "signup") {
             signUp(userForm);
         };
     };
