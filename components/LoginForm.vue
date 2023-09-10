@@ -11,7 +11,7 @@
         email: "",
         password: "",
         name: "",
-        image: ""
+        image: null
     });
 
     function handleSubmit() {
@@ -38,7 +38,7 @@
             <p v-if="errorBag.password">{{ errorBag.password }}</p>
         </div>
         <div class="form-field">
-            <input type="file" placeholder="Password" :on-change="userForm.image" accept="image/apng, image/bmp, image/gif, image/jpeg, image/pjpeg, image/png"/>
+            <input type="file" placeholder="Password" :on-change="userForm.image" />
             <p v-if="errorBag.password">{{ errorBag.password }}</p>
         </div>
         <button type="submit">{{ type == "login" ? "Login" : "Register" }}</button>

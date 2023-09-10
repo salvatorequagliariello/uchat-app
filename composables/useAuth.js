@@ -1,6 +1,6 @@
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { getStorage, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import { ref as storageRef } from "firebase/storage";
+import { ref as firebaseRef } from "firebase/storage";
 import { doc, setDoc } from "firebase/firestore";
 
 export const user = () => useState("userStore", () => ({}));
@@ -43,22 +43,19 @@ export default function useAuth() {
     };
   
   async function signUp({ email, password, name, image }) {
+    const date = new Date().getTime();
+    const storageRef = firebaseRef(storage, `${name + date}`);
+
+    const metadata = {
+      contentType: 'image/jpg',
+    };
 
     try {
       const userDetails = await createUserWithEmailAndPassword(auth, email, password);
       user().value = userDetails.user;
-      const firebaseRef = storageRef(storage, userDetails.user.uid);
-      const uploadTask = uploadBytesResumable(firebaseRef, image);
 
-      uploadTask.on('state_changed',
-        (snapshot) => {
-          return;
-        },
-        (error) => {
-          console.log(error);
-        },
-        () => {
-          getDownloadURL(uploadTask.snapshot.ref).then(async (downloadUrl) => {
+      await uploadBytesResumable(storageRef, image, metadata).then(() => {
+          getDownloadURL(storageRef).then(async (downloadUrl) => {
             await updateProfile(userDetails.user, {
               name,
               photoURL: downloadUrl
