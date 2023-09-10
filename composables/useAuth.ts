@@ -1,5 +1,5 @@
-import { signInWithEmailAndPassword, createUserWithEmailAndPassword, Auth } from "firebase/auth";
-import { getStorage, uploadBytesResumable, getDownloadURL, } from "firebase/storage";
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { getStorage, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { ref as storageRef } from "firebase/storage";
 
 export const user = () => useState("userStore", () => ({}));
@@ -59,8 +59,11 @@ export default function useAuth() {
           return undefined;
         },
         () => {
-          getDownloadURL(uploadTask.snapshot.ref).then(downloadUrl => {
-            console.log("File available at", downloadUrl)
+          getDownloadURL(uploadTask.snapshot.ref).then(async (downloadUrl) => {
+            await updateProfile(userDetails.user, {
+              displayName: name,
+              photoURL: downloadUrl
+            })
           })
         }
       );
