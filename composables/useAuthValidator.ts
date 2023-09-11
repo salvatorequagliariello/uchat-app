@@ -1,6 +1,6 @@
-import { z } from "zod";
+import { string, z } from "zod";
 
-export default function useAuthValidator({ email, password, name }: any, type: string) {
+export default function useAuthValidator({ email, password, name, image }: any, type: string) {
     let body;
 
     try {
@@ -16,7 +16,14 @@ export default function useAuthValidator({ email, password, name }: any, type: s
             const loginSchema = z.object({
                 email: z.string().email().min(1),
                 password: z.string().min(6),
-                name: z.string()
+                name: z.string(),
+                image: z.object({
+                    name: z.string(),
+                    size: z.number(),
+                    lastModified: z.number(),
+                    lastModifiedDate: z.string(),
+                    type: string()
+                })
             });
     
             body = loginSchema.parse({ email, password, name });
@@ -28,6 +35,18 @@ export default function useAuthValidator({ email, password, name }: any, type: s
         };
 
     } catch (error) {
-        console.log(error);
+        let errors: any = {
+            flag: false,
+          }
+      
+          if (error instanceof z.ZodError) {
+            const zodIssues = error.issues;
+      
+            for (let i = 0; i < zodIssues.length; i++) {
+              errors[zodIssues[i].path[0]] = zodIssues[i].message;
+            };
+          };
+      
+          return errors;
     }
 };

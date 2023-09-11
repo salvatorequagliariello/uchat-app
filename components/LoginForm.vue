@@ -7,28 +7,25 @@
 
     const {login, signUp, errorBag} = useAuth();
 
-    let file;
-
     function onFileChanged($event) {
         const target = $event.target;
         if (target && target.files) {
-            file = target.files[0];
+            userForm.image = target.files[0];
         };
-    }
+    };
 
     const userForm = reactive({
         email: "",
         password: "",
         name: "",
+        image: ""
     });
 
     function handleSubmit() {
         if (formProps.type == "login") {
-            console.log(file);
             login(userForm);
         } else if (formProps.type == "signup") {
-            console.log(file);
-            signUp(userForm, file);
+            signUp(userForm);
         };
     };
 </script>
@@ -67,6 +64,6 @@
     .form-field {
         display: flex;
         flex-direction: column;
-    }
+    };
 
 </style>
