@@ -7,18 +7,28 @@
 
     const {login, signUp, errorBag} = useAuth();
 
+    let file;
+
+    function onFileChanged($event) {
+        const target = $event.target;
+        if (target && target.files) {
+            file = target.files[0];
+        };
+    }
+
     const userForm = reactive({
         email: "",
         password: "",
         name: "",
-        image: null
     });
 
     function handleSubmit() {
         if (formProps.type == "login") {
+            console.log(file);
             login(userForm);
         } else if (formProps.type == "signup") {
-            signUp(userForm);
+            console.log(file);
+            signUp(userForm, file);
         };
     };
 </script>
@@ -38,7 +48,7 @@
             <p v-if="errorBag.password">{{ errorBag.password }}</p>
         </div>
         <div class="form-field">
-            <input type="file" placeholder="Password" :on-change="userForm.image" />
+            <input type="file" accept="image/*" @change="onFileChanged($event)" />
             <p v-if="errorBag.password">{{ errorBag.password }}</p>
         </div>
         <button type="submit">{{ type == "login" ? "Login" : "Register" }}</button>

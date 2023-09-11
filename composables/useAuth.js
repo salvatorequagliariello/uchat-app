@@ -42,9 +42,10 @@ export default function useAuth() {
       }
     };
   
-  async function signUp({ email, password, name, image }) {
+  async function signUp({ email, password, name }, image) {
     const date = new Date().getTime();
     const storageRef = firebaseRef(storage, `${name + date}`);
+    console.log(image, name, email, password);
 
     const metadata = {
       contentType: 'image/jpg',
