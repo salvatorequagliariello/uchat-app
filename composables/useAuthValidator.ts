@@ -13,17 +13,11 @@ export default function useAuthValidator({ email, password, name, image }: any, 
     
             body = loginSchema.parse({ email, password });
         } else if (type == "signup") {
+            const ACCEPTED_IMAGE_TYPES = ["image/jpeg", "image/jpg", "image/png", "image/webp"];
             const loginSchema = z.object({
                 email: z.string().email().min(1),
                 password: z.string().min(6),
-                name: z.string(),
-                image: z.object({
-                    name: z.string(),
-                    size: z.number(),
-                    lastModified: z.number(),
-                    lastModifiedDate: z.string(),
-                    type: string()
-                })
+                name: z.string().min(1),
             });
     
             body = loginSchema.parse({ email, password, name });

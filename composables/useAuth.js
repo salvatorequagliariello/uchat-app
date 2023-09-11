@@ -16,7 +16,8 @@ export default function useAuth() {
     authErrors: {
         email: null,
         password: null,
-        name: null
+        name: null,
+        image: null
     },
     firebaseLoginErrors: {
         isAnyError: false,
@@ -27,8 +28,8 @@ export default function useAuth() {
         error: "",
     },
     uploadError: {
-      isAnyError: false,
-      error: "",
+        isAnyError: false,
+        error: "",
     }
   });
 
@@ -40,25 +41,24 @@ export default function useAuth() {
       } catch (error) {
         console.log(error);
       }
-    };
+  };
   
   async function signUp({ email, password, name, image }) {
     const validateForm = useAuthValidator({ email, password, name, image }, "signup")
 
-    console.log(validateForm);
+    if (validateForm.flag === false) {
+      errorBag.value.authErrors = validateForm;
+      return;
+    };
 
     const date = new Date().getTime();
     const storageRef = firebaseRef(storage, `${name + date}`);
-
-    const metadata = {
-      contentType: 'image/jpg',
-    };
 
     try {
       const userDetails = await createUserWithEmailAndPassword(auth, email, password);
       user().value = userDetails.user;
 
-      await uploadBytesResumable(storageRef, image, metadata).then(() => {
+      await uploadBytesResumable(storageRef, image).then(() => {
           getDownloadURL(storageRef).then(async (downloadUrl) => {
             await updateProfile(userDetails.user, {
               name,

@@ -25,6 +25,10 @@
         if (formProps.type == "login") {
             login(userForm);
         } else if (formProps.type == "signup") {
+            if (userForm.image === "") {
+                errorBag.value.authErrors.image = "Error";
+                return;
+            }
             signUp(userForm);
         };
     };
@@ -34,19 +38,19 @@
     <form class="sign-in-form" @submit.prevent="handleSubmit">
         <div class="form-field">
             <input type="text" placeholder="Name" v-model="userForm.name" v-if="type == 'signup'" />
-            <p v-if="errorBag.name">{{ errorBag.name }}</p>
+            <p v-if="errorBag.authErrors.name" ref="errorBag.authErrors.name">Please, enter a valid name.</p>
         </div>
         <div class="form-field">
             <input type="email" placeholder="Email" v-model="userForm.email"/>
-            <p v-if="errorBag.email">{{ errorBag.email }}</p>
+            <p v-if="errorBag.authErrors.email">Please, enter a valid email address.</p>
         </div>
         <div class="form-field">
             <input type="password" placeholder="Password" v-model="userForm.password"/>
-            <p v-if="errorBag.password">{{ errorBag.password }}</p>
+            <p v-if="errorBag.authErrors.password">Please, insert a valid password!</p>
         </div>
         <div class="form-field">
-            <input type="file" accept="image/*" @change="onFileChanged($event)" />
-            <p v-if="errorBag.password">{{ errorBag.password }}</p>
+            <input type="file" accept="image/*" @change="onFileChanged($event)" v-if="type == 'signup'" />
+            <p v-if="errorBag.authErrors.image">Image is required!</p>
         </div>
         <button type="submit">{{ type == "login" ? "Login" : "Register" }}</button>
     </form>
