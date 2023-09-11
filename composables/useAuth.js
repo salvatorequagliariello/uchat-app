@@ -57,11 +57,19 @@ export default function useAuth() {
 
       try {
         const userDetails = await signInWithEmailAndPassword(auth, email, password);
+        const validateForm = useAuthValidator({ email, password }, "login")
+
+        if (validateForm.flag === false ) {
+          errorBag.value.authErrors = validateForm;
+          return;
+        };
 
         user().value = {
           ...userDetails.user,
           loggedIn: true
         };
+
+        navigateTo("/");
 
       } catch (error) {
         console.log(error);

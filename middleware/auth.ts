@@ -1,15 +1,16 @@
 import { onAuthStateChanged } from "firebase/auth";
 
-export default defineNuxtRouteMiddleware((to) => {
+export default defineNuxtRouteMiddleware(async (to, from) => {
     const nuxt = useNuxtApp();
     const auth: any = nuxt.$auth;
-    onAuthStateChanged(auth, user => {
+
+    await onAuthStateChanged(auth, user => {
         if (user && to.path == "/") {
-            console.log(user);
-            return navigateTo("/");
+          return navigateTo("/");
         } else if (!user && to.path == "/") {
-            console.log(user);
-          return navigateTo("/sign-in");
+            return navigateTo("/sign-in");
+        } else if (from.path == "/sign-in" && user && to.path == "/") {
+            return navigateTo("/");
         }
     })
 });
