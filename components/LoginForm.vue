@@ -25,16 +25,14 @@
         if (formProps.type == "login") {
             login(userForm);
         } else if (formProps.type == "signup") {
-            if (typeof userForm.image !== "object") {
-                errorBag.value.authErrors.image = "Error";
-                return;
-            };
             signUp(userForm);
         };
     };
 </script>
 
 <template>
+    <p v-if="errorBag.firebaseSignUpErrors.isAnyError">Something went wrong! Please, try again with a different email address!</p>
+    <p v-if="errorBag.firebaseLoginErrors.isAnyError">Something went wrong! Please, try again!</p>
     <form class="sign-in-form" @submit.prevent="handleSubmit">
         <div class="form-field">
             <input type="text" placeholder="Name" v-model="userForm.name" v-if="type == 'signup'" />
