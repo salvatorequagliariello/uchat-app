@@ -1,12 +1,12 @@
-<script>
+<script setup>
 
 </script>
 
 <template>
     <div class="page">
-        signup
-        <LoginForm type="signup" />
-        <NuxtLink to="/sign-in">Already have an account? Sign-in</NuxtLink>
+        sign-in
+        <LoginForm type="login" />
+        <NuxtLink to="/sign-up">No account? sign up</NuxtLink>
     </div>
 </template>
 

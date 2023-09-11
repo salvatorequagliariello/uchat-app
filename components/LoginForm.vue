@@ -25,10 +25,10 @@
         if (formProps.type == "login") {
             login(userForm);
         } else if (formProps.type == "signup") {
-            if (userForm.image === "") {
+            if (typeof userForm.image !== "object") {
                 errorBag.value.authErrors.image = "Error";
                 return;
-            }
+            };
             signUp(userForm);
         };
     };
