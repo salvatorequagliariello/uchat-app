@@ -64,10 +64,7 @@ export default function useAuth() {
           return;
         };
 
-        user().value = {
-          ...userDetails.user,
-          loggedIn: true
-        };
+        user().value = userDetails.user;
 
         navigateTo("/");
 

@@ -31,7 +31,7 @@ export default function useAuthValidator({ email, password, name, image }: any, 
     } catch (error) {
         let errors: any = {
             flag: false,
-          }
+          };
       
           if (error instanceof z.ZodError) {
             const zodIssues = error.issues;
