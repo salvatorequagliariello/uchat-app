@@ -1,7 +1,8 @@
 import { initializeApp } from 'firebase/app';
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { Auth, getAuth, onAuthStateChanged } from "firebase/auth";
 import { getStorage, ref } from "firebase/storage";
-import { getFirestore } from 'firebase/firestore';
+import { Firestore, getFirestore } from 'firebase/firestore';
+import { App } from 'nuxt/dist/app/compat/capi';
 
 
 export default defineNuxtPlugin(nuxtApp => {

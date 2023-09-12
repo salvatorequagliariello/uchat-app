@@ -1,17 +1,18 @@
-import { signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile, onAuthStateChanged } from "firebase/auth";
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile, onAuthStateChanged, Persistence, Auth } from "firebase/auth";
 import { getStorage, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { ref as firebaseRef } from "firebase/storage";
 import { doc, setDoc } from "firebase/firestore";
+import { NuxtApp } from "nuxt/app";
 
 export const user = () => useState("userStore", () => ({}));
 
 export default function useAuth() {
-  const nuxt = useNuxtApp();
+  const nuxt: NuxtApp = useNuxtApp();
   const auth = nuxt.$auth;
   const storage = nuxt.$storage;
   const db = nuxt.$firestore;
   
-  const errorBag = ref({
+  const errorBag: Ref<ErrorBagObj | null> = ref({
     authErrors: {
         email: null,
         password: null,
@@ -33,7 +34,7 @@ export default function useAuth() {
   });
 
 
-  const login = async ({ email, password }) => {
+  const login = async ({ email, password }: UserFormObj) => {
     errorBag.value = {
       authErrors: {
           email: null,
@@ -56,7 +57,7 @@ export default function useAuth() {
     };
 
       try {
-        const userDetails = await signInWithEmailAndPassword(auth, email, password);
+        const userDetails = await signInWithEmailAndPassword((auth: Object ), email, password);
         const validateForm = useAuthValidator({ email, password }, "login")
 
         if (validateForm.flag === false ) {
@@ -72,10 +73,10 @@ export default function useAuth() {
         console.log(error);
         errorBag.value.firebaseLoginErrors.isAnyError = true;
         errorBag.value.firebaseLoginErrors.error = error;
-      }
+      } 
   };
   
-  async function signUp({ email, password, name, image }) {
+  async function signUp({ email, password, name, image }: UserFormObj) {
     errorBag.value = {
       authErrors: {
           email: null,

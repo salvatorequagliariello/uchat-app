@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
     const formProps = defineProps({
         type: {
             type: String,
@@ -7,7 +7,7 @@
 
     const {login, signUp, errorBag} = useAuth();
 
-    function onFileChanged($event) {
+    const onFileChanged = ($event: InputFileEvent) {
         const target = $event.target;
         if (target && target.files) {
             userForm.image = target.files[0];

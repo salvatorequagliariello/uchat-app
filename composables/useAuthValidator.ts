@@ -1,10 +1,9 @@
 import { string, z } from "zod";
 
-export default function useAuthValidator({ email, password, name, image }: any, type: string) {
+export default function useAuthValidator({ email, password, name, image }: UserFormObj, type: string) {
     let body;
 
     try {
-
         if (type == "login") {
             const loginSchema = z.object({
                 email: z.string().email().min(1),
@@ -27,7 +26,6 @@ export default function useAuthValidator({ email, password, name, image }: any, 
             flag: true,
             ...body
         };
-
     } catch (error) {
         let errors: any = {
             flag: false,
