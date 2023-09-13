@@ -3,6 +3,7 @@ export default defineNuxtConfig({
   alias: {
     assets: "/<rootDir>/assets"
   },
+  ssr: true,
   runtimeConfig: {
     public: {
       FB_API_KEY: process.env.FB_API_KEY,
