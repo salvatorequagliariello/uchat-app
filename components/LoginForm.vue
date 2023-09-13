@@ -6,11 +6,11 @@
     });
 
     const {login, signUp, errorBag} = useAuth(); 
-    const userForm = reactive({
+    const userForm: UserFormObj = reactive({
         email: "",
         password: "",
         name: "",
-        image: <File>{}
+        image: undefined 
     });
 
     const onFileChanged = function ($event: Event): void {

@@ -2,7 +2,7 @@ import { initializeApp } from 'firebase/app';
 import { Auth, getAuth, onAuthStateChanged } from "firebase/auth";
 import { FirebaseStorage, getStorage, ref } from "firebase/storage";
 import { Firestore, getFirestore } from 'firebase/firestore';
-import { App } from 'nuxt/dist/app/compat/capi';
+import { RouteLocationNormalized } from '#vue-router';
 
 
 export default defineNuxtPlugin(nuxtApp => {
@@ -23,6 +23,7 @@ export default defineNuxtPlugin(nuxtApp => {
     const storage: FirebaseStorage = getStorage(app);
     const firestore: Firestore = getFirestore(app);
 
+
     nuxtApp.vueApp.provide('auth', auth);
     nuxtApp.provide('auth', auth);
 
@@ -32,5 +33,4 @@ export default defineNuxtPlugin(nuxtApp => {
     nuxtApp.vueApp.provide('firestore', firestore)
     nuxtApp.provide('firestore', firestore)
 
-    
 }); 

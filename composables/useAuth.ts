@@ -1,18 +1,15 @@
-import { signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile, onAuthStateChanged, Persistence, Auth } from "firebase/auth";
-import { getStorage, uploadBytesResumable, getDownloadURL, StorageReference } from "firebase/storage";
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile, Auth } from "firebase/auth";
+import { uploadBytesResumable, getDownloadURL, StorageReference } from "firebase/storage";
 import { ref as firebaseRef } from "firebase/storage";
 import { Firestore, doc, setDoc } from "firebase/firestore";
 import { NuxtApp } from "nuxt/app";
 import { FirebaseStorage } from "firebase/storage";
-import { FirebaseError } from "firebase/app";
-
-export const user = () => useState("userStore", () => ({}));
 
 export default function useAuth() {
   const nuxt: NuxtApp = useNuxtApp();
-  const auth = nuxt.$auth;
-  const storage = nuxt.$storage;
-  const db = nuxt.$firestore;
+  const auth = <Auth>nuxt.$auth;
+  const storage = <FirebaseStorage | StorageReference>nuxt.$storage;
+  const db = <Firestore>nuxt.$firestore;
   
   const errorBag: Ref<ErrorBagObj | null> = ref({
     authErrors: {
@@ -68,16 +65,13 @@ export default function useAuth() {
     
     try {
       const userDetails = await signInWithEmailAndPassword(<Auth>auth, email, password);
-      
-        user().value = userDetails.user;
 
-        navigateTo("/");
-
+      navigateTo("/");
       } catch (error) {
         console.log(error);
         errorBag.value.firebaseLoginErrors.isAnyError = true;
         errorBag.value.firebaseLoginErrors.error = error;
-      } 
+      };
   };
   
   async function signUp({ email, password, name, image }: UserFormObj) {
@@ -109,7 +103,7 @@ export default function useAuth() {
       return;
     };
     
-    if (image && Object.keys(image).length == 0) {
+    if (image === undefined) {
       errorBag.value.authErrors.image = "Error";
       return;
     } 
@@ -119,7 +113,6 @@ export default function useAuth() {
 
       try {
         const userDetails = await createUserWithEmailAndPassword(<Auth>auth, email, password);
-        user().value = userDetails.user;
         
         const upload = await uploadBytesResumable(storageRef, <Blob | File>image).then(() => {
           getDownloadURL(storageRef).then(async (downloadUrl) => {
@@ -150,7 +143,7 @@ export default function useAuth() {
     }
   };
 
-  function logout( auth: Auth ) {
+  function logout() {
     auth.signOut().then(() => {})
   }
 
