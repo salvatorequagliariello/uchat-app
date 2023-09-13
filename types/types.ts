@@ -2,7 +2,7 @@ interface UserFormObj {
     name?: string,
     email: string,
     password: string,
-    image?: File | Object
+    image?: File | Blob | Uint8Array | ArrayBuffer
 }
 
 interface ErrorBagObj {

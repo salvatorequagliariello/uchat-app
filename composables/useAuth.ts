@@ -1,7 +1,7 @@
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile, onAuthStateChanged, Persistence, Auth } from "firebase/auth";
-import { getStorage, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { getStorage, uploadBytesResumable, getDownloadURL, StorageReference } from "firebase/storage";
 import { ref as firebaseRef } from "firebase/storage";
-import { doc, setDoc } from "firebase/firestore";
+import { Firestore, doc, setDoc } from "firebase/firestore";
 import { NuxtApp } from "nuxt/app";
 import { FirebaseStorage } from "firebase/storage";
 import { FirebaseError } from "firebase/app";
@@ -59,7 +59,7 @@ export default function useAuth() {
     };
 
       try {
-        const userDetails = await signInWithEmailAndPassword((auth: Auth), email, password);
+        const userDetails = await signInWithEmailAndPassword(<Auth>auth, email, password);
         const validateForm = useAuthValidator({ email, password }, "login")
 
         if (validateForm.flag === false ) {
@@ -107,48 +107,48 @@ export default function useAuth() {
       return;
     };
     
-    if (typeof image !== "Blob") {
+    if (image && Object.keys(image).length == 0) {
       errorBag.value.authErrors.image = "Error";
       return;
     } 
 
     const date = new Date().getTime();
-    const storageRef = firebaseRef(storage<FirebaseStorage | StorageReference>, `${name + date}`);
+    const storageRef = firebaseRef(<FirebaseStorage | StorageReference>storage, `${<string>name + date}`);
 
-    try {
-      const userDetails = await createUserWithEmailAndPassword(auth, email, password);
-      user().value = userDetails.user;
-
-      const upload = await uploadBytesResumable(storageRef, image).then(() => {
+      try {
+        const userDetails = await createUserWithEmailAndPassword(<Auth>auth, email, password);
+        user().value = userDetails.user;
+        
+        const upload = await uploadBytesResumable(storageRef, <Blob | File>image).then(() => {
           getDownloadURL(storageRef).then(async (downloadUrl) => {
             await updateProfile(userDetails.user, {
-              name,
+              displayName: name,
               photoURL: downloadUrl
             });
-
-            await setDoc(doc(db, "users", userDetails.user.uid), {
+            
+            await setDoc(doc(<Firestore>db, "users", userDetails.user.uid), {
               uid: userDetails.user.uid,
               name,
               email,
               photoUrl: downloadUrl
             });
-
-            await setDoc(doc(db, "userChats", userDetails.user.uid), {
+            
+            await setDoc(doc(<Firestore>db, "userChats", userDetails.user.uid), {
             });
-
+            
           });
-
+          
           navigateTo("/sign-in");
         }
-      );
-
+        );
+        
     } catch (error) {
       errorBag.value.firebaseSignUpErrors.isAnyError = true;
       errorBag.value.firebaseSignUpErrors.error = error;
     }
   };
 
-  function logout() {
+  function logout( auth: Auth ) {
     auth.signOut().then(() => {})
   }
 

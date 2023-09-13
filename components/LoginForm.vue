@@ -10,7 +10,7 @@
         email: "",
         password: "",
         name: "",
-        image: {}
+        image: <File>{}
     });
 
     const onFileChanged = ($event: Event): void => {

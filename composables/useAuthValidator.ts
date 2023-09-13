@@ -12,7 +12,6 @@ export default function useAuthValidator({ email, password, name, image }: UserF
     
             body = loginSchema.parse({ email, password });
         } else if (type == "signup") {
-            const ACCEPTED_IMAGE_TYPES = ["image/jpeg", "image/jpg", "image/png", "image/webp"];
             const loginSchema = z.object({
                 email: z.string().email().min(1),
                 password: z.string().min(6),
