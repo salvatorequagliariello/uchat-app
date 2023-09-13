@@ -58,15 +58,17 @@ export default function useAuth() {
       }
     };
 
-      try {
-        const userDetails = await signInWithEmailAndPassword(<Auth>auth, email, password);
-        const validateForm = useAuthValidator({ email, password }, "login")
+    
+    const validateForm = useAuthValidator({ email, password }, "login");
 
-        if (validateForm.flag === false ) {
-          errorBag.value.authErrors = validateForm;
-          return;
-        };
-
+    if (validateForm.flag === false ) {
+      errorBag.value.authErrors = validateForm;
+      return;
+    };
+    
+    try {
+      const userDetails = await signInWithEmailAndPassword(<Auth>auth, email, password);
+      
         user().value = userDetails.user;
 
         navigateTo("/");

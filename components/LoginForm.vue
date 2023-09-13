@@ -13,14 +13,14 @@
         image: <File>{}
     });
 
-    const onFileChanged = ($event: Event): void => {
+    const onFileChanged = function ($event: Event): void {
         const target =  <HTMLInputElement>$event.target;
         if (target && target.files) {
             userForm.image = target.files[0];
         };
     };
 
-    const handleSubmit = () => {
+    const handleSubmit = function (): void {
         if (formProps.type == "login") {
             login(userForm);
         } else if (formProps.type == "signup") {
