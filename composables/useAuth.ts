@@ -3,6 +3,8 @@ import { getStorage, uploadBytesResumable, getDownloadURL } from "firebase/stora
 import { ref as firebaseRef } from "firebase/storage";
 import { doc, setDoc } from "firebase/firestore";
 import { NuxtApp } from "nuxt/app";
+import { FirebaseStorage } from "firebase/storage";
+import { FirebaseError } from "firebase/app";
 
 export const user = () => useState("userStore", () => ({}));
 
@@ -57,7 +59,7 @@ export default function useAuth() {
     };
 
       try {
-        const userDetails = await signInWithEmailAndPassword((auth: Object ), email, password);
+        const userDetails = await signInWithEmailAndPassword((auth: Auth), email, password);
         const validateForm = useAuthValidator({ email, password }, "login")
 
         if (validateForm.flag === false ) {
@@ -105,13 +107,13 @@ export default function useAuth() {
       return;
     };
     
-    if (image === "") {
+    if (typeof image !== "Blob") {
       errorBag.value.authErrors.image = "Error";
       return;
     } 
 
     const date = new Date().getTime();
-    const storageRef = firebaseRef(storage, `${name + date}`);
+    const storageRef = firebaseRef(storage<FirebaseStorage | StorageReference>, `${name + date}`);
 
     try {
       const userDetails = await createUserWithEmailAndPassword(auth, email, password);

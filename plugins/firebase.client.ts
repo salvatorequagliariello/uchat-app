@@ -1,6 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { Auth, getAuth, onAuthStateChanged } from "firebase/auth";
-import { getStorage, ref } from "firebase/storage";
+import { FirebaseStorage, getStorage, ref } from "firebase/storage";
 import { Firestore, getFirestore } from 'firebase/firestore';
 import { App } from 'nuxt/dist/app/compat/capi';
 
@@ -19,9 +19,9 @@ export default defineNuxtPlugin(nuxtApp => {
 
     const app = initializeApp(firebaseConfig);
 
-    const auth = getAuth(app);
-    const storage = getStorage(app);
-    const firestore = getFirestore(app);
+    const auth: Auth = getAuth(app);
+    const storage: FirebaseStorage = getStorage(app);
+    const firestore: Firestore = getFirestore(app);
 
     nuxtApp.vueApp.provide('auth', auth);
     nuxtApp.provide('auth', auth);

@@ -5,23 +5,22 @@
         }
     });
 
-    const {login, signUp, errorBag} = useAuth();
+    const {login, signUp, errorBag} = useAuth(); 
+    const userForm = reactive({
+        email: "",
+        password: "",
+        name: "",
+        image: {}
+    });
 
-    const onFileChanged = ($event: InputFileEvent) {
-        const target = $event.target;
+    const onFileChanged = ($event: Event): void => {
+        const target =  <HTMLInputElement>$event.target;
         if (target && target.files) {
             userForm.image = target.files[0];
         };
     };
 
-    const userForm = reactive({
-        email: "",
-        password: "",
-        name: "",
-        image: ""
-    });
-
-    function handleSubmit() {
+    const handleSubmit = () => {
         if (formProps.type == "login") {
             login(userForm);
         } else if (formProps.type == "signup") {
@@ -31,24 +30,24 @@
 </script>
 
 <template>
-    <p v-if="errorBag.firebaseSignUpErrors.isAnyError">Something went wrong! Please, try again with a different email address!</p>
-    <p v-if="errorBag.firebaseLoginErrors.isAnyError">Something went wrong! Please, try again!</p>
+    <p v-if="errorBag?.firebaseSignUpErrors.isAnyError">Something went wrong! Please, try again with a different email address!</p>
+    <p v-if="errorBag?.firebaseLoginErrors.isAnyError">Something went wrong! Please, try again!</p>
     <form class="sign-in-form" @submit.prevent="handleSubmit">
         <div class="form-field">
             <input type="text" placeholder="Name" v-model="userForm.name" v-if="type == 'signup'" />
-            <p v-if="errorBag.authErrors.name" ref="errorBag.authErrors.name">Please, enter a valid name.</p>
+            <p v-if="errorBag?.authErrors.name" ref="errorBag.authErrors.name">Please, enter a valid name.</p>
         </div>
         <div class="form-field">
             <input type="email" placeholder="Email" v-model="userForm.email"/>
-            <p v-if="errorBag.authErrors.email">Please, enter a valid email address.</p>
+            <p v-if="errorBag?.authErrors.email">Please, enter a valid email address.</p>
         </div>
         <div class="form-field">
             <input type="password" placeholder="Password" v-model="userForm.password"/>
-            <p v-if="errorBag.authErrors.password">Please, insert a valid password!</p>
+            <p v-if="errorBag?.authErrors.password">Please, insert a valid password!</p>
         </div>
         <div class="form-field">
             <input type="file" accept="image/*" @change="onFileChanged($event)" v-if="type == 'signup'" />
-            <p v-if="errorBag.authErrors.image">Image is required!</p>
+            <p v-if="errorBag?.authErrors.image">Image is required!</p>
         </div>
         <button type="submit">{{ type == "login" ? "Login" : "Register" }}</button>
     </form>

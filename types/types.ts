@@ -2,27 +2,27 @@ interface UserFormObj {
     name?: string,
     email: string,
     password: string,
-    image?: File,
+    image?: File | Object
 }
 
 interface ErrorBagObj {
-    (authErrors: Object): {
+    authErrors: {
         email: null | string,
         password: null | string,
         name: null | string,
         image: null | string
     },
-    (firebaseLoginErrors: Object): {
+    firebaseLoginErrors: {
         isAnyError: boolean,
-        error: string | null,
+        error: string | null | unknown,
     },
-    (firebaseSignUpErrors: Object): {
+    firebaseSignUpErrors: {
         isAnyError: boolean,
-        error: string | null,
+        error: string | null | unknown,
     },
-    (uploadError: Object): {
+    uploadError: {
         isAnyError: boolean,
-        error: string | null,
+        error: string | null | unknown,
     }
 }
 
