@@ -10,8 +10,6 @@ export default async function addUser(newUser: DocumentData) {
     const currentUserId: string | undefined = currentUser?.uid;
     const newUserId: string  = newUser.uid;
 
-    console.log(newUser);
-
     if (currentUserId) {
         const combinedId = currentUserId > newUserId ? currentUserId + newUserId : newUserId + currentUserId;
 

@@ -8,3 +8,4 @@ export const foundUser = () => useState("foundUser", () => ({
                                             found: false,
                                             searchedFor: false
 }));
+export const userChats = () => useState("userChats", () => <DocumentData | undefined>[]);

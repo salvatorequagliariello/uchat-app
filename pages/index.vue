@@ -28,10 +28,10 @@ import { Auth, User } from 'firebase/auth';
                         <button @click="logout">logout</button>
                     </div>
                     <UsersSearch />
+                    <Chats />
                 </div>
 
                 <div class="chat-view">
-                    chat
                 </div>
 
             </div>

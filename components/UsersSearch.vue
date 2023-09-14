@@ -11,6 +11,11 @@
         searchedUser.value = "";
     };
 
+    const addUserToChats = () => {
+        addUser(queryResponse.userDetails);
+        eraseSearch();
+    };
+
 </script>
 
 
@@ -28,7 +33,7 @@
         <div v-if="queryResponse.found && queryResponse.searchedFor" class="founduser-container">
             <img :src="`${queryResponse?.userDetails.photoUrl}`" />
             <p>{{ queryResponse?.userDetails.name }}</p>
-            <button @click="addUser(queryResponse.userDetails)">add to chats</button>
+            <button @click="addUserToChats">add to chats</button>
         </div>
         
         <p v-if="!queryResponse.found && queryResponse.searchedFor">No user found.</p>
