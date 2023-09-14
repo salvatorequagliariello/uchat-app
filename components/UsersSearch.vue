@@ -2,24 +2,36 @@
 import { DocumentData } from 'firebase/firestore';
 
     const searchedUser = searchedUserName();
-    const found = foundUser();
+    const queryResponse = foundUser().value;
 
-    const searchUser = () => {
-        const res: DocumentData | void = getUsers(searchedUser.value);
-        return res;
+    const eraseSearch = () => {
+        queryResponse.userDetails = {};
+        queryResponse.errors = false;
+        queryResponse.searchedFor = false;
+        queryResponse.found = false;
+        searchedUser.value = "";
     };
+
 </script>
 
 <template>
     <div class="user-search-bar">
+
         <input type="text" placeholder="Search users" v-model="searchedUser"/>
-        <button @click="searchUser">Search</button>
-        <button @click="found = null">X</button>
-        <div v-if="found" class="founduser-container">
-            <img :src="`${found?.photoUrl}`" />
-            <p>{{ found?.name }}</p>
+        <button @click="getUsers(searchedUser)">
+            Search
+        </button>
+        <button @click="eraseSearch">
+            X
+        </button>
+
+        <div v-if="queryResponse.found && queryResponse.searchedFor" class="founduser-container">
+            <img :src="`${queryResponse?.userDetails.photoUrl}`" />
+            <p>{{ queryResponse?.userDetails.name }}</p>
             <button>add to chats</button>
         </div>
+        
+        <p v-if="!queryResponse.found && queryResponse.searchedFor">No user found.</p>
     </div>
 </template>
 

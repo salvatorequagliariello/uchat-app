@@ -7,8 +7,8 @@ import { Auth, User } from 'firebase/auth';
 
     const nuxt = useNuxtApp();
     const auth = <Auth>nuxt.$auth;
-    const { logout } = useAuth();
     const userDetails = auth.currentUser;
+    const { logout } = useAuth();
 
     const render: boolean = userDetails ? true : false;
 
