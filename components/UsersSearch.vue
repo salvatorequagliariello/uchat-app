@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { DocumentData } from 'firebase/firestore';
 
     const searchedUser = searchedUserName();
     const queryResponse = foundUser().value;
@@ -13,6 +12,7 @@ import { DocumentData } from 'firebase/firestore';
     };
 
 </script>
+
 
 <template>
     <div class="user-search-bar">
@@ -28,12 +28,13 @@ import { DocumentData } from 'firebase/firestore';
         <div v-if="queryResponse.found && queryResponse.searchedFor" class="founduser-container">
             <img :src="`${queryResponse?.userDetails.photoUrl}`" />
             <p>{{ queryResponse?.userDetails.name }}</p>
-            <button>add to chats</button>
+            <button @click="addUser(queryResponse.userDetails)">add to chats</button>
         </div>
         
         <p v-if="!queryResponse.found && queryResponse.searchedFor">No user found.</p>
     </div>
 </template>
+
 
 <style>
 .user-search-bar {

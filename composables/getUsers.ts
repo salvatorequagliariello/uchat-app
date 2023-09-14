@@ -23,8 +23,8 @@ export default async function getUsers (userName: string) {
             user.searchedFor = true;
             user.found = true;
         });
-        
+
     } catch (error) {
         user.errors = true;
     };
-} ;
+};
