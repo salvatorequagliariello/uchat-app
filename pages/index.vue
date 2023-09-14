@@ -20,6 +20,7 @@ import { Auth, User } from 'firebase/auth';
         <div class="app-view">
             homepage
             <div class="app-container">
+
                 <div class="chats-container">
                     <div class="user-details">
                         <img :src="`${userDetails?.photoURL}`" />
@@ -63,8 +64,8 @@ import { Auth, User } from 'firebase/auth';
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding: 1rem 0;
-        gap: 1rem;
+        padding: 0 1rem;
+        width: 100%;
 
         background-color: rgb(55, 55, 55);
     }
@@ -73,25 +74,22 @@ import { Auth, User } from 'firebase/auth';
         padding: 1rem;
         flex: 1.25;
         background-color: brown;
-        width: 100%;
         display: flex;
     }
 
     .user-details {
         display: flex;
         align-items: center;
-        justify-content: left;
-        gap: 1rem;
+        justify-content: space-between;
         background-color: black;
         width: 100%;
         color: white;
-        padding: 1rem 0;
+        padding: 1rem;
     }
 
     .user-details img {
         width: 50px;
         height: 50px;
         border-radius: 100%;
-        margin-left: 1rem;
     }
 </style>
