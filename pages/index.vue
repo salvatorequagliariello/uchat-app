@@ -10,7 +10,9 @@ import { Auth, User } from 'firebase/auth';
     const { logout } = useAuth();
     const userDetails = auth.currentUser;
 
-    const render = userDetails ? true : false;
+    const render: boolean = userDetails ? true : false;
+
+
 </script>
 
 <template>
@@ -18,23 +20,19 @@ import { Auth, User } from 'firebase/auth';
         <div class="app-view">
             homepage
             <div class="app-container">
-
                 <div class="chats-container">
                     <div class="user-details">
                         <img :src="`${userDetails?.photoURL}`" />
                         <p>{{ userDetails?.displayName }}</p>
                         <button @click="logout">logout</button>
                     </div>
-                    <input type="text" placeholder="Search users" />
-                    <button type="submit">Search</button>
-                    <div class="chats">
-
-                    </div>
+                    <UsersSearch />
                 </div>
 
                 <div class="chat-view">
-
+                    chat
                 </div>
+
             </div>
         </div>
     </div>
@@ -46,47 +44,54 @@ import { Auth, User } from 'firebase/auth';
         left: 50%;
         top: 50%;
         transform: translate(-50%,  -50%);
-        width: 900px;
-        height: 600px;
+        width: 1000px;
+        height: 700px;
         background-color: darkgrey;
         padding: 1rem;
         display: flex;
+        flex-direction: column;
     }
 
     .app-container {
         display: flex;
-        align-items: start;
         margin-top: 2rem;
+        height: 100%;
     }
 
     .chats-container {
+        flex: 0.75;
         display: flex;
         flex-direction: column;
-        justify-content: left;
-        flex: 1;
+        align-items: center;
+        padding: 1rem 0;
+        gap: 1rem;
 
         background-color: rgb(55, 55, 55);
     }
 
     .chat-view {
-        flex: 1;
+        padding: 1rem;
+        flex: 1.25;
         background-color: brown;
         width: 100%;
-        height: 100%;
+        display: flex;
     }
 
     .user-details {
-        width: 100%;
         display: flex;
         align-items: center;
         justify-content: left;
         gap: 1rem;
-        margin: 1rem 0;
+        background-color: black;
+        width: 100%;
+        color: white;
+        padding: 1rem 0;
     }
 
     .user-details img {
         width: 50px;
         height: 50px;
         border-radius: 100%;
+        margin-left: 1rem;
     }
 </style>
