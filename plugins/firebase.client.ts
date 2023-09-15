@@ -2,7 +2,6 @@ import { initializeApp } from 'firebase/app';
 import { Auth, getAuth, onAuthStateChanged } from "firebase/auth";
 import { FirebaseStorage, getStorage, ref } from "firebase/storage";
 import { Firestore, getFirestore } from 'firebase/firestore';
-import { RouteLocationNormalized } from '#vue-router';
 
 
 export default defineNuxtPlugin(nuxtApp => {
