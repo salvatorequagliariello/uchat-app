@@ -28,7 +28,7 @@ import { Auth, User } from 'firebase/auth';
                         <button @click="logout">logout</button>
                     </div>
                     <UsersSearch />
-                    <Chats />
+                    <ChatsPreview />
                 </div>
 
                 <div class="chat-view">

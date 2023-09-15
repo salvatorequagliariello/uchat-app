@@ -14,8 +14,8 @@
                 if (doc.exists()) {
                     const res: DocumentData | undefined = doc.data();
                     chats.value = Object.entries(res);
-                }
-        })
+                };
+        });
     };
 </script>
 
@@ -28,7 +28,7 @@
                         <img :src="chat[1].userInfo[`photoURL`]" />
                         <div class="chat-preview__details">
                             <p>{{ chat[1].userInfo["displayName"] }}</p>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
+                            <p>{{ chat[1].userInfo["lastMessage"] }}</p>
                         </div>
                     </div>
                 </li>
@@ -51,9 +51,24 @@
         display: flex;
         width: 100%;
         align-items: center;
-        background-color: white;
-        border-radius: 20px;
         padding: 0.5rem 1rem;
     }
+    
+    li {
+        border-radius: 20px;
+        margin-bottom: 1rem;
+        background-color: white;
+    }
 
+    li:hover {
+        background-color: grey;
+        cursor: pointer;
+    }
+
+    li img {
+        width: 50px;
+        border-radius: 100%;
+        margin-right: 1rem;
+    }
+    
 </style>
