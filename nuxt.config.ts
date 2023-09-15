@@ -4,6 +4,7 @@ export default defineNuxtConfig({
     assets: "/<rootDir>/assets"
   },
   ssr: true,
+  debug: true,
   runtimeConfig: {
     public: {
       FB_API_KEY: process.env.FB_API_KEY,

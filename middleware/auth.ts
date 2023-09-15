@@ -1,4 +1,4 @@
-import { Auth, CompleteFn, onAuthStateChanged } from "firebase/auth";
+import { Auth, onAuthStateChanged } from "firebase/auth";
 
 export default defineNuxtRouteMiddleware(async (to, from) => {
     const nuxt = useNuxtApp();

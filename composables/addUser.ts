@@ -20,7 +20,6 @@ export default async function addUser(newUser: DocumentData) {
                 await setDoc(doc(db, "chats", combinedId), { messages: [] });
 
                 await updateDoc(doc(db, "userChats", currentUserId), {
-                    ciao: "cher",
                     [combinedId + ".userInfo"]: {
                         uid: newUserId,
                         displayName: newUser.name,
