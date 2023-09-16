@@ -11,18 +11,25 @@
 
     const chats = ref();
     
-    const changeSelectedChat = (user: DocumentData) => {
-        selectedChat.value.user = user;
-    };
-
     if (currentUser) {
-            const unsub = onSnapshot(doc(db, "userChats", currentUser.uid), (doc) => {
-                if (doc.exists()) {
-                    const res: DocumentData | undefined = doc.data();
-                    chats.value = Object.entries(res);
-                };
+        const unsub = onSnapshot(doc(db, "userChats", currentUser.uid), (doc) => {
+            if (doc.exists()) {
+                const res: DocumentData | undefined = doc.data();
+                chats.value = Object.entries(res);
+            };
         });
     };
+
+    const changeSelectedChat = (user: DocumentData) => {
+        selectedChat.value.user = user;
+
+        if (currentUser) {
+            selectedChat.value.chatId = currentUser.uid > user.uid ? currentUser.uid + user.uid : user.uid + currentUser.uid;
+        };
+        
+        getChatData();
+    };
+
 </script>
 
 

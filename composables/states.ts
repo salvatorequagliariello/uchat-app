@@ -11,5 +11,6 @@ export const foundUser = () => useState("foundUser", () => ({
 
 export const userConversation = () => useState("userConversation", () => ({
                                             user: <DocumentData>{},
-                                            conversation: <DocumentData>{}
+                                            conversation: <string[] | undefined>[],
+                                            chatId: <string>""
 }));
