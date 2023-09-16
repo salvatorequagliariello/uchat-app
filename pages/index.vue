@@ -32,6 +32,7 @@ import { Auth, User } from 'firebase/auth';
                 </div>
 
                 <div class="chat-view">
+                    <ChatView />
                 </div>
 
             </div>

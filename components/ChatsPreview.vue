@@ -1,14 +1,20 @@
 <script setup lang="ts">
     import { Auth } from "firebase/auth";
-    import { DocumentData, DocumentSnapshot, Firestore, doc, onSnapshot } from "firebase/firestore";
+    import { DocumentData, Firestore, doc, onSnapshot } from "firebase/firestore";
     import { NuxtApp } from "nuxt/app";
 
     const nuxt: NuxtApp = useNuxtApp();
     const db = <Firestore>nuxt.$firestore;
     const auth = <Auth>nuxt.$auth;
     const currentUser = auth.currentUser;
-    let chats = ref();
+    const selectedChat = userConversation();
+
+    const chats = ref();
     
+    const changeSelectedChat = (user: DocumentData) => {
+        selectedChat.value.user = user;
+    };
+
     if (currentUser) {
             const unsub = onSnapshot(doc(db, "userChats", currentUser.uid), (doc) => {
                 if (doc.exists()) {
@@ -23,7 +29,7 @@
 <template>
         <div class="chat-previews">
             <ul>
-                <li v-for="chat in chats" :key="chat[1].uid">
+                <li v-for="chat in chats" :key="chat[1].userInfo.uid" @click="changeSelectedChat(chat[1].userInfo)">
                     <div class="chat-preview__container">
                         <img :src="chat[1].userInfo[`photoURL`]" />
                         <div class="chat-preview__details">
