@@ -5,12 +5,42 @@
 
 
 <template>
-    <div>
-        <p>{{ chatInfo.user.displayName }}</p>
+    <div class="chat-view__container">
+        <div class="chat-header">
+            <div class="user-conversation">
+                <img :src="chatInfo.user[`photoURL`]" />
+                <p>{{ chatInfo.user.displayName }}</p>
+            </div>
+        </div>
+        <div>
+            <ChatInput />
+        </div>
     </div>
 </template>
 
 
 <style scoped>
+    .chat-view__container {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
 
+    .chat-header {
+        box-sizing: border-box;
+        background-color: black;
+        color: white;
+        width: 100%;
+        padding: 1rem;
+    }
+    .user-conversation {
+        display: flex;
+        gap: 1rem;
+    }
+
+    .user-conversation img {
+        width: 50px;
+        border-radius: 100%;
+    }
 </style>

@@ -72,7 +72,6 @@ import { Auth, User } from 'firebase/auth';
     }
 
     .chat-view {
-        padding: 1rem;
         flex: 1.25;
         background-color: brown;
         display: flex;
