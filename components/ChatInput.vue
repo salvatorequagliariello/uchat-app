@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { Firestore, arrayUnion, doc, updateDoc } from 'firebase/firestore';
 import { NuxtApp } from 'nuxt/app';
+import { uuid } from 'vue-uuid';
+import { FirebaseStorage, StorageReference, ref as firebaseRef, uploadBytesResumable } from "firebase/storage";
 
     const nuxt: NuxtApp = useNuxtApp();
-    const db = <Firestore>nuxt.$firestore;
     const chatInfo = userConversation().value;
     const message: Ref<Message> = ref({ 
         text: null, 
@@ -12,13 +12,9 @@ import { NuxtApp } from 'nuxt/app';
 
     const handleSendMessage = async (): Promise<void> => {
         if (message.value.img)  {
-
+            const storageRef = firebaseRef(<FirebaseStorage | StorageReference>storage, uuid.v4());
+            const uploadTask = uploadBytesResumable(storageRef, message.value.img);
         } else {
-            await updateDoc(doc(db, "chats", chatInfo.chatId), {
-                messages: arrayUnion({
-                    id: 
-                })
-            })
         }
 
         console.log(message.value.text);
