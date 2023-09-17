@@ -54,4 +54,4 @@ export default async function sendMessage(message: Message) {
         },
         [chatInfo.chatId + ".date"]: serverTimestamp(),
       });
-}
+};

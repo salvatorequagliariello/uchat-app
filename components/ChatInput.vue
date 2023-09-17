@@ -1,7 +1,5 @@
 <script setup lang="ts">
 import { NuxtApp } from 'nuxt/app';
-import { uuid } from 'vue-uuid';
-import { FirebaseStorage, StorageReference, ref as firebaseRef, uploadBytesResumable } from "firebase/storage";
 
     const nuxt: NuxtApp = useNuxtApp();
     const chatInfo = userConversation().value;
@@ -11,14 +9,10 @@ import { FirebaseStorage, StorageReference, ref as firebaseRef, uploadBytesResum
     });
 
     const handleSendMessage = async (): Promise<void> => {
-        if (message.value.img)  {
-            const storageRef = firebaseRef(<FirebaseStorage | StorageReference>storage, uuid.v4());
-            const uploadTask = uploadBytesResumable(storageRef, message.value.img);
-        } else {
-        }
+        sendMessage(message.value);
 
-        console.log(message.value.text);
-        console.log(message.value.img);
+        message.value.text = null;
+        message.value.img = null;
     };
 </script>
 
