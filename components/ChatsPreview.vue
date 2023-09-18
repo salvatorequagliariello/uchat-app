@@ -12,14 +12,15 @@
     const chats = ref();
     
     if (currentUser) {
-        const unsub = onSnapshot(doc(db, "userChats", currentUser.uid), (doc) => {
-            if (doc.exists()) {
-                const res: DocumentData | undefined = doc.data();
-                chats.value = Object.entries(res);
-            };
-        });
+            const unsub = onSnapshot(doc(db, "userChats", currentUser.uid), (doc) => {
+                if (doc.exists()) {
+                    const res: DocumentData | undefined = doc.data();
+                    const sortedRes = Object.entries(res).sort((a: any, b: any) => b[1].date - a[1].date);
+                    chats.value = sortedRes;
+                };
+            });
     };
-
+    
     const changeSelectedChat = (user: DocumentData) => {
         selectedChat.value.user = user;
 
@@ -38,10 +39,10 @@
             <ul>
                 <li v-for="chat in chats" :key="chat[1].userInfo.uid" @click="changeSelectedChat(chat[1].userInfo)">
                     <div class="chat-preview__container">
-                        <img :src="chat[1].userInfo[`photoURL`]" />
+                        <img :src="chat[1].userInfo.photoURL" />
                         <div class="chat-preview__details">
-                            <p>{{ chat[1].userInfo["displayName"] }}</p>
-                            <p>{{ chat[1].userInfo["lastMessage"] }}</p>
+                            <p>{{ chat[1].userInfo.displayName }}</p>
+                            <p>{{ chat[1].lastMessage.text }}</p>
                         </div>
                     </div>
                 </li>

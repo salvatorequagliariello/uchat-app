@@ -55,7 +55,7 @@ export default async function sendMessage(message: Message) {
     if (userDetails) {
         await updateDoc(doc(db, "userChats", userDetails.uid), {
             [chatInfo.chatId + ".lastMessage"]: {
-                text: text,
+                text,
             },
             [chatInfo.chatId + ".date"]: serverTimestamp(),
         });
@@ -63,7 +63,7 @@ export default async function sendMessage(message: Message) {
   
       await updateDoc(doc(db, "userChats", chatInfo.user?.uid), {
         [chatInfo.chatId + ".lastMessage"]: {
-          text: text,
+            text,
         },
         [chatInfo.chatId + ".date"]: serverTimestamp(),
       });
