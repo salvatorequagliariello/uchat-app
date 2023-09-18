@@ -5,7 +5,7 @@
 
 
 <template>
-    <div class="chat-view__container">
+    <div v-if="chatInfo.user" class="chat-view__container">
         <div class="chat-header">
             <div class="user-conversation">
                 <img :src="chatInfo.user[`photoURL`]" />
@@ -15,6 +15,9 @@
         <div>
             <ChatInput />
         </div>
+    </div>
+    <div v-else>
+        <p>add a chat</p>
     </div>
 </template>
 

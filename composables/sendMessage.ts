@@ -17,26 +17,35 @@ export default async function sendMessage(message: Message) {
         const storageRef = firebaseRef(<FirebaseStorage | StorageReference>storage, uuid.v4());
         const upload = await uploadBytesResumable(storageRef,  <Blob | File>message.img).then(() => {
             getDownloadURL(storageRef).then(async (downloadURL) => {
-                await updateDoc(doc(db, "chats", chatInfo.chatId), {
-                    messages: arrayUnion({
-                    id: uuid.v4(),
-                    text: message.text,
-                    senderId: userDetails?.uid,
-                    date: Timestamp.now(),
-                    img: downloadURL,
-                    }),
-                });
+                if (chatInfo.chatId) {
+                    await updateDoc(doc(db, "chats", chatInfo.chatId), {
+                        messages: arrayUnion({
+                            id: uuid.v4(),
+                            text: message.text,
+                            senderId: userDetails?.uid,
+                            date: Timestamp.now(),
+                            img: downloadURL,
+                        }),
+                    });
+                } else {
+                    chatInfo.errors = true;
+                }
             });
         })
     } else {
-        await updateDoc(doc(db, "chats", chatInfo.chatId), {
-            messages: arrayUnion({
-                id: uuid.v4(),
-                text: message.text,
-                senderId: chatInfo.user.uid,
-                data: Timestamp.now()
-            })
-        });
+        if (chatInfo.chatId) {
+
+            await updateDoc(doc(db, "chats", chatInfo.chatId), {
+                messages: arrayUnion({
+                    id: uuid.v4(),
+                    text: message.text,
+                    senderId: chatInfo.user?.uid,
+                    data: Timestamp.now()
+                })
+            });
+        } else {
+            chatInfo.errors = true;
+        }
     };
 
     if (userDetails) {
@@ -48,7 +57,7 @@ export default async function sendMessage(message: Message) {
         });
     };
   
-      await updateDoc(doc(db, "userChats", chatInfo.user.uid), {
+      await updateDoc(doc(db, "userChats", chatInfo.user?.uid), {
         [chatInfo.chatId + ".lastMessage"]: {
           text: message.text,
         },

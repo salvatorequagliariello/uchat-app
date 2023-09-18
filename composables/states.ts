@@ -10,7 +10,8 @@ export const foundUser = () => useState("foundUser", () => ({
 }));
 
 export const userConversation = () => useState("userConversation", () => ({
-                                            user: <DocumentData>{},
-                                            conversation: <string[] | undefined>[],
-                                            chatId: <string>""
+                                            user: <DocumentData | null>null,
+                                            conversation: <string[] | undefined | null>null,
+                                            chatId: <string | null>null,
+                                            errors: <boolean | null>null,
 }));
