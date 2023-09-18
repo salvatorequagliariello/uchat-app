@@ -12,10 +12,11 @@ export default async function sendMessage(message: Message) {
     const auth = <Auth>nuxt.$auth;
     const userDetails = auth.currentUser;
     const chatInfo = userConversation().value;
+    const text = message.text;
 
-    if (message.img) {
+    if (message.img !== null) {
         const storageRef = firebaseRef(<FirebaseStorage | StorageReference>storage, uuid.v4());
-        const upload = await uploadBytesResumable(storageRef,  <Blob | File>message.img).then(() => {
+        await uploadBytesResumable(storageRef,  <Blob | File>message.img).then(() => {
             getDownloadURL(storageRef).then(async (downloadURL) => {
                 if (chatInfo.chatId) {
                     await updateDoc(doc(db, "chats", chatInfo.chatId), {
@@ -31,19 +32,22 @@ export default async function sendMessage(message: Message) {
                     chatInfo.errors = true;
                 }
             });
-        })
+        }).catch(err => console.log(err));
     } else {
-        if (chatInfo.chatId) {
-
-            await updateDoc(doc(db, "chats", chatInfo.chatId), {
-                messages: arrayUnion({
-                    id: uuid.v4(),
-                    text: message.text,
-                    senderId: chatInfo.user?.uid,
-                    data: Timestamp.now()
-                })
-            });
-        } else {
+        try {
+            if (chatInfo.chatId) {
+                await updateDoc(doc(db, "chats", chatInfo.chatId), {
+                    messages: arrayUnion({
+                        id: uuid.v4(),
+                        text: message.text,
+                        senderId: chatInfo.user?.uid,
+                        data: Timestamp.now(),
+                    })
+                });
+            } else {
+                chatInfo.errors = true;
+            }
+        } catch (error) {
             chatInfo.errors = true;
         }
     };
@@ -51,7 +55,7 @@ export default async function sendMessage(message: Message) {
     if (userDetails) {
         await updateDoc(doc(db, "userChats", userDetails.uid), {
             [chatInfo.chatId + ".lastMessage"]: {
-                text: message.text,
+                text: text,
             },
             [chatInfo.chatId + ".date"]: serverTimestamp(),
         });
@@ -59,7 +63,7 @@ export default async function sendMessage(message: Message) {
   
       await updateDoc(doc(db, "userChats", chatInfo.user?.uid), {
         [chatInfo.chatId + ".lastMessage"]: {
-          text: message.text,
+          text: text,
         },
         [chatInfo.chatId + ".date"]: serverTimestamp(),
       });

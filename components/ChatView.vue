@@ -1,6 +1,12 @@
 <script setup lang="ts">
     const chatInfo = userConversation().value;
 
+    const closeChat = () => {
+        chatInfo.chatId = null;
+        chatInfo.conversation = null;
+        chatInfo.user = null;
+        chatInfo.errors = null;
+    }
 </script>
 
 
@@ -11,6 +17,7 @@
                 <img :src="chatInfo.user[`photoURL`]" />
                 <p>{{ chatInfo.user.displayName }}</p>
             </div>
+            <button @click="closeChat">X</button>
         </div>
         <div>
             <ChatInput />
@@ -36,6 +43,8 @@
         color: white;
         width: 100%;
         padding: 1rem;
+        display: flex;
+        justify-content: space-between;
     }
     .user-conversation {
         display: flex;

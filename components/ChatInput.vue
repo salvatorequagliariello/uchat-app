@@ -1,27 +1,44 @@
 <script setup lang="ts">
-import { NuxtApp } from 'nuxt/app';
-
-    const nuxt: NuxtApp = useNuxtApp();
-    const chatInfo = userConversation().value;
     const message: Ref<Message> = ref({ 
         text: null, 
         img: null
     });
+    const fileinputkey = ref(0);
 
+
+    const onFileChanged = function ($event: Event): void {
+        const target =  <HTMLInputElement>$event.target;
+        if (target && target.files) {
+            message.value.img = target.files[0];
+        };
+    };
+    
     const handleSendMessage = async (): Promise<void> => {
         sendMessage(message.value);
-
+        
         message.value.text = null;
         message.value.img = null;
+        fileinputkey.value++;
     };
 </script>
 
 
 <template>
     <div class="chat-input__container">
-        <input type="text" v-model="message.text" placeholder="Type something..." />
+        <input 
+            type="text" 
+            v-model="message.text" 
+            placeholder="Type something..." 
+        />
         <div class="chat-input__send">
-            <input type="file" accept="image/*" :on-change="message.img"  id="chat-input-img-message" />
+            <input 
+                type="file" 
+                accept="image/*" 
+                @change="onFileChanged($event)"  
+                id="inputFile"
+                ref="myFileInput"
+                :key="fileinputkey"
+            />
             <button @click="handleSendMessage">Send</button>
         </div>
     </div>
