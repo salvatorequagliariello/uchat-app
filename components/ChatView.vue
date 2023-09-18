@@ -6,7 +6,7 @@
         chatInfo.conversation = null;
         chatInfo.user = null;
         chatInfo.errors = null;
-    }
+    };
 </script>
 
 

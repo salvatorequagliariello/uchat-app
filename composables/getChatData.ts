@@ -9,7 +9,7 @@ export default function getChatData() {
     const unsub = onSnapshot(doc(db, "chats", selectedChat.value.chatId), doc => {
         if (doc.exists()) {
             selectedChat.value.conversation = doc.data().messages;
+            console.log(selectedChat.value.conversation)
         };
     });
-
 };

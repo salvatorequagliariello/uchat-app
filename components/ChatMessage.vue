@@ -1,7 +1,7 @@
 <script setup lang="ts">
     const props = defineProps({
-        text: {
-            type: String
+        message: {
+            type: Object
         },
     })
 </script>
@@ -9,7 +9,7 @@
 
 <template>
     <div>
-        <p>message</p>
+        <p>{{ text }}</p>
     </div>
 </template>
 
