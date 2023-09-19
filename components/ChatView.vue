@@ -19,16 +19,8 @@
             </div>
             <button @click="closeChat">X</button>
         </div>
-        <div class="message-container">
-            <ul>
-                <li v-for="message in chatInfo.conversation">
-                    <ChatMessage :message="message" />
-                </li>
-            </ul>
-        </div>
-        <div>
-            <ChatInput />
-        </div>
+        <ChatMessages :conversation="chatInfo.conversation" />
+        <ChatInput />
     </div>
     <div v-else>
         <p>add a chat</p>

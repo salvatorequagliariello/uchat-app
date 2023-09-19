@@ -43,6 +43,8 @@ import { Auth, User } from 'firebase/auth';
 <style>
     * {
         box-sizing: border-box;
+        margin: 0;
+        padding: 0;
     }
 
     ul {
