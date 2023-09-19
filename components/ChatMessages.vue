@@ -13,7 +13,6 @@
     
     onUpdated(() => {
         messages.value.scrollTo(0, messages.value.scrollHeight);
-        console.log(messages.value.scrollHeight);
     });
 </script>
 

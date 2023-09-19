@@ -11,26 +11,26 @@
 
     const chats = ref();
     
-    if (currentUser) {
-            const unsub = onSnapshot(doc(db, "userChats", currentUser.uid), (doc) => {
+        if (currentUser) {
+            onSnapshot(doc(db, "userChats", currentUser.uid), (doc) => {
                 if (doc.exists()) {
                     const res: DocumentData | undefined = doc.data();
                     const sortedRes = Object.entries(res).sort((a: any, b: any) => b[1].date - a[1].date);
                     chats.value = sortedRes;
                 };
             });
-    };
-    
+        };
+        
     const changeSelectedChat = (user: DocumentData) => {
         selectedChat.value.user = user;
-
+        
         if (currentUser) {
             selectedChat.value.chatId = currentUser.uid > user.uid ? currentUser.uid + user.uid : user.uid + currentUser.uid;
         };
         
         getChatData();
-    };
-
+   };
+        
 </script>
 
 
@@ -42,7 +42,7 @@
                         <img :src="chat[1].userInfo.photoURL" />
                         <div class="chat-preview__details">
                             <p>{{ chat[1].userInfo.displayName }}</p>
-                            <p>{{ chat[1].lastMessage.text }}</p>
+                            <p>{{ chat[1].lastMessage["text"] }}</p>
                         </div>
                     </div>
                 </li>
