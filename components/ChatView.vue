@@ -19,6 +19,13 @@
             </div>
             <button @click="closeChat">X</button>
         </div>
+        <div class="message-container">
+            <ul>
+                <li v-for="message in chatInfo.conversation">
+                    <ChatMessage :message="message" />
+                </li>
+            </ul>
+        </div>
         <div>
             <ChatInput />
         </div>
@@ -32,6 +39,7 @@
 <style scoped>
     .chat-view__container {
         width: 100%;
+        height: 100%;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -51,8 +59,16 @@
         gap: 1rem;
     }
 
+    .ul {
+        max-height: 100%;
+    }
+
     .user-conversation img {
         width: 50px;
         border-radius: 100%;
+    }
+
+    .message-container {
+        overflow-y: scroll;
     }
 </style>

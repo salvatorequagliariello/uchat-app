@@ -35,7 +35,7 @@ interface InputFileEvent extends Event {
     target: HTMLInputElement;
 }
 
-interface MessageObg {
+interface MessageObj {
     id: string,
     img?: string,
     senderId: string,

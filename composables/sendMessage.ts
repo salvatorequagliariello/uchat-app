@@ -40,7 +40,7 @@ export default async function sendMessage(message: Message) {
                     messages: arrayUnion({
                         id: uuid.v4(),
                         text: message.text,
-                        senderId: chatInfo.user?.uid,
+                        senderId: userDetails?.uid,
                         data: Timestamp.now(),
                     })
                 });

@@ -41,6 +41,14 @@ import { Auth, User } from 'firebase/auth';
 </template>
 
 <style>
+    * {
+        box-sizing: border-box;
+    }
+
+    ul {
+        list-style-type: none;
+    }
+
     .app-view {
         position: absolute;
         left: 50%;
