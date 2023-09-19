@@ -1,5 +1,5 @@
 <script setup lang="ts">
-    const chatInfo = userConversation().value;
+    const chatInfo = <any>userConversation().value;
 
     const closeChat = () => {
         chatInfo.chatId = null;

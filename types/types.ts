@@ -37,8 +37,8 @@ interface InputFileEvent extends Event {
 
 interface MessageObj {
     id: string,
-    img?: string,
+    img?: string | null,
     senderId: string,
-    text: string,
+    text: string | null,
     date: Date
 }

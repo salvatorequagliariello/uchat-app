@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { Auth } from 'firebase/auth';
-import { Firestore } from 'firebase/firestore';
 import { NuxtApp } from 'nuxt/app';
 
     const props = defineProps({

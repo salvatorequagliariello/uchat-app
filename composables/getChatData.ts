@@ -6,9 +6,11 @@ export default function getChatData() {
     const db = <Firestore>nuxt.$firestore;
     const selectedChat = userConversation();
 
-    const unsub = onSnapshot(doc(db, "chats", selectedChat.value.chatId), doc => {
-        if (doc.exists()) {
-            selectedChat.value.conversation = doc.data().messages;
-        };
-    });
+    if (selectedChat.value.chatId) {
+        const unsub = onSnapshot(doc(db, "chats", selectedChat.value.chatId), doc => {
+            if (doc.exists()) {
+                selectedChat.value.conversation = doc.data().messages;
+            };
+        });
+    };
 };
