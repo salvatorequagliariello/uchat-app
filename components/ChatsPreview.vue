@@ -6,7 +6,7 @@
     const nuxt: NuxtApp = useNuxtApp();
     const db = <Firestore>nuxt.$firestore;
     const auth = <Auth>nuxt.$auth;
-    const currentUser = auth.currentUser;
+    const currentUser = useFirebaseUser().value;
     const selectedChat = userConversation();
 
     const chats = ref();

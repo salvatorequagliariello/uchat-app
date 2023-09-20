@@ -1,7 +1,7 @@
 import { initializeApp } from 'firebase/app';
-import { Auth, getAuth, onAuthStateChanged } from "firebase/auth";
-import { FirebaseStorage, getStorage, ref } from "firebase/storage";
-import { Firestore, getFirestore } from 'firebase/firestore';
+import { getAuth } from "firebase/auth";
+import { getStorage } from "firebase/storage";
+import { getFirestore } from 'firebase/firestore';
 
 
 export default defineNuxtPlugin(nuxtApp => {
@@ -17,13 +17,20 @@ export default defineNuxtPlugin(nuxtApp => {
     };
 
     const app = initializeApp(firebaseConfig);
-    
-    console.log(app);
+    const auth = getAuth();
+    const { login, signUp, logout, initUser, errorBag } = useAuth();
 
-    const   auth: Auth = getAuth(app);
-    const storage: FirebaseStorage = getStorage(app);
-    const firestore: Firestore = getFirestore(app);
+    initUser(auth);
+
+    const storage = getStorage();
+    const firestore = getFirestore();
     
+    nuxtApp.vueApp.provide('app', app);
+    nuxtApp.provide('app', app);
+
+    nuxtApp.vueApp.provide('initUser', initUser);
+    nuxtApp.provide('initUser', initUser);
+
     nuxtApp.vueApp.provide('auth', auth);
     nuxtApp.provide('auth', auth);
     

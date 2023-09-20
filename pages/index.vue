@@ -1,15 +1,9 @@
 <script setup lang="ts">
-// import { Auth } from 'firebase/auth';
-//     definePageMeta({
-//         middleware: 'auth',
-//     })
-
-//     const nuxt = useNuxtApp();
-//     const auth = <Auth>nuxt.$auth;
-       const userDetails = user().value;
-
+       const nuxtApp = useNuxtApp();
+       const auth = nuxtApp.$auth;
+       const userDetails = useFirebaseUser().value;
+       const logoutFunction = nuxtApp.$logout;
        const { logout } = useAuth();
-//     const render: boolean = true;
 </script>
 
 <template>
@@ -17,7 +11,6 @@
         <div class="app-view">
             homepage
             <div class="app-container">
-                <!-- <ClientOnly>
                     <div class="chats-container">
                         <div class="user-details">
                             <img :src="`${userDetails?.photoURL}`" />
@@ -27,11 +20,9 @@
                         <UsersSearch />
                         <ChatsPreview />
                     </div>
-                    
                     <div class="chat-view">
                         <ChatView />
                     </div>
-                </ClientOnly> -->
             </div>
         </div>
     </div>

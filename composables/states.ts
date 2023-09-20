@@ -16,4 +16,4 @@ export const userConversation = () => useState("userConversation", () => ({
                                             errors: <boolean | null>null,
 }));
 
-export const user = () => useState("user", () => <User | void>{});
+export const useFirebaseUser = () => useState<User | void>("firebaseUser", () => {});
