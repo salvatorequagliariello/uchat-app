@@ -1,4 +1,4 @@
-import { signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile, Auth } from "firebase/auth";
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile, Auth, getAuth, onAuthStateChanged } from "firebase/auth";
 import { uploadBytesResumable, getDownloadURL, StorageReference } from "firebase/storage";
 import { ref as firebaseRef } from "firebase/storage";
 import { Firestore, doc, setDoc } from "firebase/firestore";
@@ -7,7 +7,7 @@ import { FirebaseStorage } from "firebase/storage";
 
 export default function useAuth() {
   const nuxt: NuxtApp = useNuxtApp();
-  const auth = <Auth>nuxt.$auth;
+  const auth = getAuth();
   const storage = <FirebaseStorage | StorageReference>nuxt.$storage;
   const db = <Firestore>nuxt.$firestore;
   
@@ -143,10 +143,17 @@ export default function useAuth() {
     }
   };
 
-  function logout() {
-    auth.signOut().then(() => {})
-  }
+  const logout = async () => {
+    await auth.signOut().then(() => {})
+  };
 
+  const initUser = async () =>  {
+    onAuthStateChanged(auth, user => {
+      if (user) {
+        console.log(user.uid);
+      }
+    })
+  }
 
   return { login, signUp, logout, errorBag };
 };

@@ -1,18 +1,15 @@
 <script setup lang="ts">
-import { Auth, User } from 'firebase/auth';
+// import { Auth } from 'firebase/auth';
+//     definePageMeta({
+//         middleware: 'auth',
+//     })
 
-    definePageMeta({
-        middleware: 'auth',
-    })
+//     const nuxt = useNuxtApp();
+//     const auth = <Auth>nuxt.$auth;
+       const userDetails = user().value;
 
-    const nuxt = useNuxtApp();
-    const auth = <Auth>nuxt.$auth;
-    const userDetails = auth.currentUser;
-    const { logout } = useAuth();
-
-    const render: boolean = userDetails ? true : false;
-
-
+       const { logout } = useAuth();
+//     const render: boolean = true;
 </script>
 
 <template>
@@ -20,21 +17,21 @@ import { Auth, User } from 'firebase/auth';
         <div class="app-view">
             homepage
             <div class="app-container">
-
-                <div class="chats-container">
-                    <div class="user-details">
-                        <img :src="`${userDetails?.photoURL}`" />
-                        <p>{{ userDetails?.displayName }}</p>
-                        <button @click="logout">logout</button>
+                <!-- <ClientOnly>
+                    <div class="chats-container">
+                        <div class="user-details">
+                            <img :src="`${userDetails?.photoURL}`" />
+                            <p>{{ userDetails?.displayName }}</p>
+                            <button @click="logout">logout</button>
+                        </div>
+                        <UsersSearch />
+                        <ChatsPreview />
                     </div>
-                    <UsersSearch />
-                    <ChatsPreview />
-                </div>
-
-                <div class="chat-view">
-                    <ChatView />
-                </div>
-
+                    
+                    <div class="chat-view">
+                        <ChatView />
+                    </div>
+                </ClientOnly> -->
             </div>
         </div>
     </div>

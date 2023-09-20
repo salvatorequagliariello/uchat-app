@@ -3,10 +3,9 @@
         conversation: {
             type: Array<MessageObj>
         }
-    })
+    });
 
     const messages = ref();
-    const message1 = ref();
     defineExpose({
         messages
     });
@@ -19,7 +18,7 @@
 
 <template>
     <div class="messages" ref="messages">
-        <ChatMessage ref="message1" v-for="message in conversation" :message="message" :key="message.id" />
+        <ChatMessage v-for="message in conversation" :message="message" :key="message.id" />
     </div>
 </template>
 
@@ -29,7 +28,6 @@
         overflow-y: scroll;
         padding: 1rem;
     }
-
 </style>
 
 

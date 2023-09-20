@@ -1,4 +1,4 @@
-import { DocumentData, Firestore, doc, onSnapshot } from "firebase/firestore";
+import { Firestore, doc, onSnapshot } from "firebase/firestore";
 import { NuxtApp } from "nuxt/app";
 
 export default function getChatData() {

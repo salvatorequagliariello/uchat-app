@@ -15,3 +15,5 @@ export const userConversation = () => useState("userConversation", () => ({
                                             chatId: <string | null>null,
                                             errors: <boolean | null>null,
 }));
+
+export const user = () => useState("user", () => <User | void>{});
