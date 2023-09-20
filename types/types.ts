@@ -26,6 +26,19 @@ interface ErrorBagObj {
     }
 }
 
+interface Message {
+    text: string | null,
+    img: File | Blob | Uint8Array | ArrayBuffer | null | any
+}
+
 interface InputFileEvent extends Event {
     target: HTMLInputElement;
+}
+
+interface MessageObj {
+    id: string,
+    img?: string | null,
+    senderId: string,
+    text: string | null,
+    date: Date
 }

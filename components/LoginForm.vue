@@ -20,11 +20,11 @@
         };
     };
 
-    const handleSubmit = function (): void {
+    const handleSubmit = async function (): Promise<void> {
         if (formProps.type == "login") {
-            login(userForm);
+            await login(userForm);
         } else if (formProps.type == "signup") {
-            signUp(userForm);
+            await signUp(userForm);
         };
     };
 </script>
