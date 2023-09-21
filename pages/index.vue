@@ -1,22 +1,17 @@
 <script setup lang="ts">
-       const nuxtApp = useNuxtApp();
-       const auth = nuxtApp.$auth;
        const userDetails = useFirebaseUser().value;
-       const logoutFunction = nuxtApp.$logout;
-       const { logout } = useAuth();
+
+       if (!userDetails) {
+        navigateTo("/sign-in");
+       };
 </script>
 
 <template>
     <div class="homepage">
         <div class="app-view">
-            homepage
             <div class="app-container">
                     <div class="chats-container">
-                        <div class="user-details">
-                            <img :src="`${userDetails?.photoURL}`" />
-                            <p>{{ userDetails?.displayName }}</p>
-                            <button @click="logout">logout</button>
-                        </div>
+                        <UserHeader :user="userDetails" />
                         <UsersSearch />
                         <ChatsPreview />
                     </div>
