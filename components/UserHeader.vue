@@ -4,7 +4,7 @@ import { PropType } from 'nuxt/dist/app/compat/capi';
 
     const props = defineProps({
         user: {
-            type: Object as PropType<User> | void,
+            type: Object as PropType<User>,
         }
     });
     const { logout } = useAuth();

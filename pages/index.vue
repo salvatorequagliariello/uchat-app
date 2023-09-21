@@ -10,14 +10,14 @@
     <div class="homepage">
         <div class="app-view">
             <div class="app-container">
-                    <div class="chats-container">
-                        <UserHeader :user="userDetails" />
-                        <UsersSearch />
-                        <ChatsPreview />
-                    </div>
-                    <div class="chat-view">
-                        <ChatView />
-                    </div>
+                <div class="chats-container" v-if="userDetails">
+                    <UserHeader :user="userDetails" />
+                    <UsersSearch />
+                    <ChatsPreview />
+                </div>
+                <div class="chat-view">
+                    <ChatView />
+                </div>
             </div>
         </div>
     </div>
