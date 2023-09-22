@@ -5,7 +5,10 @@ import uchatLogo from "~/assets/images/uchat-logo.png";
 <template>
     <div class="sign-in-page">
         <div class="form-container">
-            <img :src="uchatLogo" />
+            <div class="form-header">
+                <img :src="uchatLogo" alt="uChat app logo."/>
+                <p>uChat</p>
+            </div>
             <LoginForm type="login" />
         </div>
     </div>
@@ -25,11 +28,27 @@ import uchatLogo from "~/assets/images/uchat-logo.png";
         left: 50%;
         top: 50%;
         transform: translate(-50%, -50%);
+        background-color: $primary-color;
+        padding: 2rem;
+        border-radius: 1rem;
+    }
 
+    .form-header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto 2rem;
+        gap: 0.875rem;
+                
         img {
-            width: 100px;
-            height: 100px;
-            margin: 0 auto 1rem;
+            width: 70px;
+            height: 70px;
+            margin: 0 0 1rem;
+        }
+
+        p {
+            color: $accent-color;
+            font-size: 2rem;
         }
     }
 </style>
