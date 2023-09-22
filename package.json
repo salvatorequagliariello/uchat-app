@@ -10,7 +10,10 @@
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
-    "nuxt": "^3.7.1"
+    "@nuxtjs/style-resources": "^1.2.1",
+    "node-sass": "^9.0.0",
+    "nuxt": "^3.7.1",
+    "sass-loader": "^13.3.2"
   },
   "dependencies": {
     "firebase": "^10.3.1",
