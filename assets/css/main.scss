@@ -1,11 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&family=Manrope:wght@200;300;400;500;600;700&display=swap');
+
 /* variables */
+$primary-color: #0A171F;
+$secondary-color: #3E4649;
+$text-color: #d5d5d5;
+$accent-color: #1471D9;
+$accent-color-hover: #0c4e98;
+$alt-secondary-color: #2f3336;
+$primary-font: 'Manrope', sans-serif;
 
-    $primary-color: #0A171F;
-    $secondary-color: #3E4649;
-    $text-color: #d5d5d5;
-    $accent-color: #1471D9;
-    $accent-color-hover: #0c4e98;
-    $alt-secondary-color: #2f3336;
 
+
+* {
+    font-family: $primary-font;
+}
 
 
