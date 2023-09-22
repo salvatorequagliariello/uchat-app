@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { Icon } from '@iconify/vue';
+
     const formProps = defineProps({
         type: {
             type: String,
@@ -40,12 +42,11 @@
         <p class="error-message auth-errors" v-if="errorBag?.firebaseLoginErrors.isAnyError">
             Something went wrong! Please, try again!
         </p>
-        <div class="auth-form__field">
+        <div class="auth-form__field" v-if="type == 'signup'">
             <input 
                 type="text" 
                 placeholder="Name" 
                 v-model="userForm.name" 
-                v-if="type == 'signup'"
                 :class="errorBag?.authErrors.name && invalid"
             />
             <p class="error-message" v-if="errorBag?.authErrors.name" ref="errorBag.authErrors.name">
@@ -74,18 +75,22 @@
                 Please, enter a valid password.
             </p>
         </div>
-        <div class="auth-form__field file-input">
+        <div class="auth-form__field file-input" v-if="type == 'signup'">
             <input 
                 type="file" 
                 accept="image/*" 
                 @change="onFileChanged($event)" 
-                v-if="type == 'signup'" 
+                id="image-input"
             />
+            <label for="image-input">
+                <Icon icon="mdi:image-add-outline" class="icon"/>
+                <p>{{ userForm.image ? "Avatar uploaded" : "Add an avatar" }}</p>
+            </label>
             <p class="error-message" v-if="errorBag?.authErrors.image">Image is required!</p>
         </div>
         <button type="submit">{{ type == "login" ? "Sign in" : "Sign up" }}</button>
-        <NuxtLink to="/sign-up">
-            {{ type == "login" ? "New to uChat? Join now!" : "Sign up" }}
+        <NuxtLink :to="type == 'login' ? '/sign-up' : '/sign-in'">
+            {{ type == "login" ? "New to uChat? Join now!" : "Alredy have an account? Sign in!" }}
         </NuxtLink>
     </form>
 </template>
@@ -99,14 +104,21 @@
         align-items: center;
         color: $text-color;
 
+        h2 {
+            margin-bottom: 1rem;
+        }
+
         button {
             width: 50%;
+            margin-top: 1rem;
 
             color: $text-color;
             background-color: $accent-color;
             border: none;
             border-radius: 1rem;
             padding: 0.5rem 0;
+            font-size: 1.25rem;
+            font-weight: 600;
 
             &:hover {
                 background-color: $accent-color-hover;
@@ -121,7 +133,7 @@
             &:hover {
                 color: $text-hover-color;
             }
-         }
+        }
     }
 
     .auth-errors {
@@ -161,6 +173,31 @@
             margin-top: 0.250rem;
             font-size: 0.875rem;
             color: $error-color;
+        }
+    }
+
+    input[type=file] {
+        display: none;
+    }
+
+    label {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+
+        padding: 0.5rem;
+        border: 2px solid $accent-color;
+        border-radius: 0.5rem;
+        cursor: pointer;
+        
+        p {
+            opacity: 0.4;
+        }
+
+        .icon {
+            width: 30px;
+            height: 30px;
+            color: $accent-color;
         }
     }
 </style>

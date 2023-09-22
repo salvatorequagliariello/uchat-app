@@ -1,22 +1,55 @@
 <script setup>
+import uchatLogo from "~/assets/images/uchat-logo.png";
 </script>
 
 <template>
-    <div class="page">
-        signup
-        <LoginForm type="signup" />
-        <NuxtLink to="/sign-in">Already have an account? Sign-in</NuxtLink>
+    <div class="sign-up-page">
+        <div class="form-container">
+            <div class="form-header">
+                <img :src="uchatLogo" alt="uChat app logo."/>
+                <p>uChat</p>
+            </div>
+            <LoginForm type="signup" />
+        </div>
     </div>
 </template>
 
-<style>
-.page {
-    width: 100%;
-    height: 70vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 2rem;
-}
+
+<style scoped lang="scss">
+@import '~/assets/css/main.scss';
+    .sign-up-page {
+        width: 100%;
+        height: 100vh;
+        background-color: $alt-secondary-color;
+    }
+
+    .form-container {
+        width: 500px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        background-color: $primary-color;
+        padding: 2rem;
+        border-radius: 1rem;
+    }
+
+    .form-header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto 2rem;
+        gap: 0.875rem;
+                
+        img {
+            width: 70px;
+            height: 70px;
+            margin: 0 0 1rem;
+        }
+
+        p {
+            color: $accent-color;
+            font-size: 2rem;
+        }
+    }
 </style>
