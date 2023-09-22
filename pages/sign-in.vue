@@ -2,21 +2,16 @@
 </script>
 
 <template>
-    <div class="page">
-        sign-in
+    <div class="sign-in-page">
         <LoginForm type="login" />
         <NuxtLink to="/sign-up">No account? sign up</NuxtLink>
     </div>
 </template>
 
-<style>
+<style scoped lang="scss">
+@import url('./assets/css/main.scss');
 .page {
     width: 100%;
-    height: 70vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 2rem;
+    height: 100vh;
 }
 </style>

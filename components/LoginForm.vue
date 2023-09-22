@@ -30,41 +30,40 @@
 </script>
 
 <template>
-    <p v-if="errorBag?.firebaseSignUpErrors.isAnyError">Something went wrong! Please, try again with a different email address!</p>
-    <p v-if="errorBag?.firebaseLoginErrors.isAnyError">Something went wrong! Please, try again!</p>
-    <form class="sign-in-form" @submit.prevent="handleSubmit">
-        <div class="form-field">
+    <form class="auth-form" @submit.prevent="handleSubmit">
+        <p v-if="errorBag?.firebaseSignUpErrors.isAnyError">Something went wrong! Please, try again with a different email address!</p>
+        <p v-if="errorBag?.firebaseLoginErrors.isAnyError">Something went wrong! Please, try again!</p>
+        <div class="auth-form__field">
             <input type="text" placeholder="Name" v-model="userForm.name" v-if="type == 'signup'" />
             <p v-if="errorBag?.authErrors.name" ref="errorBag.authErrors.name">Please, enter a valid name.</p>
         </div>
-        <div class="form-field">
+        <div class="auth-form__field">
             <input type="email" placeholder="Email" v-model="userForm.email"/>
             <p v-if="errorBag?.authErrors.email">Please, enter a valid email address.</p>
         </div>
-        <div class="form-field">
+        <div class="auth-form__field">
             <input type="password" placeholder="Password" v-model="userForm.password"/>
             <p v-if="errorBag?.authErrors.password">Please, insert a valid password!</p>
         </div>
-        <div class="form-field">
+        <div class="auth-form__field">
             <input type="file" accept="image/*" @change="onFileChanged($event)" v-if="type == 'signup'" />
             <p v-if="errorBag?.authErrors.image">Image is required!</p>
         </div>
-        <button type="submit">{{ type == "login" ? "Login" : "Register" }}</button>
+        <button type="submit">{{ type == "login" ? "Sign in" : "Sign up" }}</button>
     </form>
 </template>
 
 <style lang="scss" scoped>
-    .sign-in-form {
+    .auth-form {
         display: flex;
         flex-direction: column;
         max-width: 500px;
         margin: 0 auto;
         gap: 2rem;
-    };
+    }
 
     .form-field {
         display: flex;
         flex-direction: column;
-    };
-
+    }
 </style>
