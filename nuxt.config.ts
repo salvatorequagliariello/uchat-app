@@ -25,5 +25,5 @@ export default defineNuxtConfig({
   plugins: [
     { src: '~/plugins/firebase.client.ts', mode: "client"},
   ],
-  css: ['~/assets/css/main.scss', '~/assets/css/reset.scss']
+  css: ['~/assets/css/main.scss', '~/assets/css/reset.scss'],
 })

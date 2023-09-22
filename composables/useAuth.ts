@@ -153,7 +153,9 @@ export default function useAuth() {
     await onAuthStateChanged(auth, user => {
       if (user) {
         firebaseUser.value = user;
-        console.log(user.uid);
+        navigateTo("/");
+      } else {
+        navigateTo("/sign-in");
       }
     })
   }

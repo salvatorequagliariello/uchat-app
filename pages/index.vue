@@ -1,8 +1,9 @@
 <script setup lang="ts">
        const userDetails = useFirebaseUser().value;
+       console.log(userDetails);
 
        if (!userDetails) {
-        navigateTo("/sign-in");
+        navigateTo("/loading");
        };
 </script>
 
