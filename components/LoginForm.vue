@@ -90,7 +90,7 @@ import { Icon } from '@iconify/vue';
         </div>
         <button type="submit">{{ type == "login" ? "Sign in" : "Sign up" }}</button>
         <NuxtLink :to="type == 'login' ? '/sign-up' : '/sign-in'">
-            {{ type == "login" ? "New to uChat? Join now!" : "Alredy have an account? Sign in!" }}
+            {{ type == "login" ? "New to uChat? Join now!" : "Already have an account? Sign in!" }}
         </NuxtLink>
     </form>
 </template>

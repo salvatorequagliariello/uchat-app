@@ -44,7 +44,6 @@
 <style>
 .user-search-bar {
     width: 100%;
-    background-color: rgb(29, 29, 29);
     padding: 1rem;
     display: flex;
     flex-direction: column;

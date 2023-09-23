@@ -1,6 +1,5 @@
 <script setup lang="ts">
        const userDetails = useFirebaseUser().value;
-       console.log(userDetails);
 
        if (!userDetails) {
         navigateTo("/loading");
@@ -8,9 +7,8 @@
 </script>
 
 <template>
-    <div class="homepage">
-        <div class="app-view">
-            <div class="app-container">
+        <div class="homepage">
+            <div class="app">
                 <div class="chats-container" v-if="userDetails">
                     <UserHeader :user="userDetails" />
                     <UsersSearch />
@@ -21,69 +19,46 @@
                 </div>
             </div>
         </div>
-    </div>
 </template>
 
-<style>
-    * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-    }
+<style scoped lang="scss">
+@import '~/assets/css/main.scss';
 
-    ul {
-        list-style-type: none;
-    }
+    .homepage {
+        width: 100%;
+        height: 100vh;
 
-    .app-view {
+        background-color: $alt-secondary-color;
+    }
+    .app {
         position: absolute;
         left: 50%;
         top: 50%;
         transform: translate(-50%,  -50%);
-        width: 1000px;
-        height: 700px;
-        background-color: darkgrey;
-        padding: 1rem;
-        display: flex;
-        flex-direction: column;
-    }
 
-    .app-container {
+        max-width: 700px;
+        max-height: 600px;
+
         display: flex;
-        margin-top: 2rem;
-        height: 100%;
+        align-items: center;
+        justify-content: center;
+
+        background-color: $primary-color;
     }
 
     .chats-container {
         flex: 0.75;
+
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding: 0 1rem;
-        width: 100%;
+        justify-content: flex-start;
 
-        background-color: rgb(55, 55, 55);
+        height: 100%;
     }
 
     .chat-view {
         flex: 1.25;
-        background-color: brown;
-        display: flex;
-    }
-
-    .user-details {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        background-color: black;
-        width: 100%;
-        color: white;
-        padding: 1rem;
-    }
-
-    .user-details img {
-        width: 50px;
-        height: 50px;
-        border-radius: 100%;
+        height: 100%;
     }
 </style>
