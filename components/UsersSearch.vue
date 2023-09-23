@@ -33,7 +33,7 @@
         <div v-if="queryResponse.found && queryResponse.searchedFor" class="founduser-container">
             <img :src="`${queryResponse?.userDetails.photoUrl}`" />
             <p>{{ queryResponse?.userDetails.name }}</p>
-            <button @click="addUserToChats">add to chats</button>
+            <button @click="addUserToChats">Add friend</button>
         </div>
         
         <p v-if="!queryResponse.found && queryResponse.searchedFor">No user found.</p>
