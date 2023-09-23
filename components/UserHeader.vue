@@ -13,9 +13,11 @@ import { Icon } from '@iconify/vue';
 
 
 <template>
-    <div class="user-details">
-        <img :src="`${user?.photoURL}`" />
-        <p>{{ user?.displayName }}</p>
+    <div class="user-header">
+        <div class="user-details">
+            <img :src="`${user?.photoURL}`" />
+            <p>{{ user?.displayName }}</p>
+        </div>
         <button @click="logout">
             <Icon icon="material-symbols:logout" class="icon"/>
         </button>
@@ -25,7 +27,7 @@ import { Icon } from '@iconify/vue';
 
 <style scoped lang="scss">
 @import '~/assets/css/main.scss';
-    .user-details {
+    .user-header {
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -38,8 +40,8 @@ import { Icon } from '@iconify/vue';
         color: $text-color;
 
         img {
-            height: 60px;
-            width: 60px;
+            height: 55px;
+            width: 55px;
 
             border-radius: 100%;
         }
@@ -51,11 +53,23 @@ import { Icon } from '@iconify/vue';
 
             padding: 0.5rem;
 
+            &:hover {
+                background-color: $secondary-color-hover;
+                cursor: pointer;
+            }
+
             .icon {
                 width: 20px;
                 height: 20px;
                 color: $text-color;
             }
         }
+    }
+
+    .user-details {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 1rem;
     }
 </style>

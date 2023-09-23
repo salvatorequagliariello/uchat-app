@@ -10,8 +10,10 @@
         <div class="homepage">
             <div class="app">
                 <div class="chats-container" v-if="userDetails">
-                    <UserHeader :user="userDetails" />
-                    <UsersSearch />
+                    <div class="chats-container__header">
+                        <UserHeader :user="userDetails" />
+                        <UsersSearch />
+                    </div>
                     <ChatsPreview />
                 </div>
                 <div class="chat-view">
@@ -37,7 +39,7 @@
         transform: translate(-50%,  -50%);
 
         width: 900px;
-        max-height: 600px;
+        height: 600px;
 
         display: flex;
         align-items: center;
@@ -48,20 +50,33 @@
     }
 
     .chats-container {
-        flex: 0.75;
+        flex: 0.70;
 
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: flex-start;
-        padding: 1rem;
 
         height: 100%;
         width: 100%;
     }
+
+    .chats-container__header {
+        width: 100%;
+        padding: 1.5rem;
+
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        background-color: $secondary-color;
+
+        border-top-left-radius: 1rem;
+        border-bottom-left-radius: 1rem;
+        border-bottom-right-radius: 1rem;
+    }
     
     .chat-view {
-        flex: 1.25;
+        flex: 1.30;
         height: 100%;
         width: 100%;
     }

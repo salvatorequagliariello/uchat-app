@@ -58,6 +58,8 @@
         flex-direction: column;
         width: 100%;
         margin-top: 1rem;
+        padding: 1rem;
+        overflow-y: auto;
     }
     
     .chat-preview__container {
