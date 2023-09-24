@@ -72,6 +72,9 @@
     
     .user-preview {
         width: 100%;
+        height: 70px;
+
+        overflow: hidden;
 
         display: flex;
         align-items: center;
@@ -94,13 +97,10 @@
     }
 
     .chat-preview__details {
-        width: 100%;
-        overflow-x: hidden;
+        max-width: 90%;
+        max-height: 90%;
 
-        p {
-            max-width: 100%;
-            overflow: hidden;
-        }
+        overflow: hidden;
     }
 
     .selected-chat {

@@ -28,7 +28,7 @@ import { NuxtApp } from 'nuxt/app';
             >
                 {{ message.text }}
             </p>
-            <img class="message-img" v-if="message.img" :src="message.img" />
+            <img class="message-img" v-if="message.img" :src="message.img" :class="[ isMessageSent ? `content-sent` : `content-received` ]"/>
         </div>
     </div>
 </template>
@@ -48,25 +48,30 @@ import { NuxtApp } from 'nuxt/app';
         margin: 5px;
         color: $text-color;
     }
-
+    
     .message-img {
+        margin: 5px;
+        width: 40%;
+        max-height: min-content;
 
+        background-color: $accent-color;
+        padding: 8px;
     }
 
     .content-sent {
         background-color: $accent-color;
 
-        border-top-right-radius: 5px;
-        border-top-left-radius: 5px;
-        border-bottom-left-radius: 5px;
+        border-top-right-radius: 8px;
+        border-top-left-radius: 8px;
+        border-bottom-left-radius: 8px;
     }
 
     .content-received {
         background-color: $alt-secondary-color-hover;
 
-        border-top-right-radius: 5px;
-        border-top-left-radius: 5px;
-        border-bottom-right-radius: 5px;
+        border-top-right-radius: 8px;
+        border-top-left-radius: 8px;
+        border-bottom-right-radius: 8px;
     }
 
     .sent {
