@@ -47,7 +47,7 @@
         >
             <img :src="chat[1].userInfo.photoURL" />
             <div class="chat-preview__details">
-                <p>{{ chat[1].userInfo.displayName }}</p>
+                <p class="user-name">{{ chat[1].userInfo.displayName }}</p>
                 <p>{{ chat[1].lastMessage["text"] }}</p>
             </div>
         </li>
@@ -101,6 +101,10 @@
         max-height: 90%;
 
         overflow: hidden;
+
+        .user-name {
+            font-weight: 600;
+        }
     }
 
     .selected-chat {

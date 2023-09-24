@@ -45,12 +45,12 @@ import { NuxtApp } from 'nuxt/app';
         max-width: 50%;
         padding: 5px;
         height: min-content;
-        margin: 5px;
+        margin: 5px 0;
         color: $text-color;
     }
     
     .message-img {
-        margin: 5px;
+        margin: 5px 0;
         width: 40%;
         max-height: min-content;
 
