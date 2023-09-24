@@ -43,7 +43,7 @@
             :key="chat[1].userInfo.uid" 
             @click="changeSelectedChat(chat[1].userInfo)" 
             class="user-preview"
-            :class="selectedUserId === chat[1].userInfo.uid && selected"
+            :class="chat[1].userInfo.uid == selectedChat.user?.uid && selected"
         >
             <img :src="chat[1].userInfo.photoURL" />
             <div class="chat-preview__details">
