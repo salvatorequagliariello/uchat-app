@@ -25,7 +25,6 @@
 
 <style scoped lang="scss">
 @import '~/assets/css/main.scss';
-
     .homepage {
         width: 100%;
         height: 100vh;
@@ -50,15 +49,13 @@
     }
 
     .chats-container {
-        flex: 0.70;
-
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: flex-start;
 
         height: 100%;
-        width: 100%;
+        width: 320px;
     }
 
     .chats-container__header {
@@ -76,8 +73,7 @@
     }
     
     .chat-view {
-        flex: 1.30;
+        width: 580px;
         height: 100%;
-        width: 100%;
     }
 </style>

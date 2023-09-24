@@ -25,6 +25,8 @@
 
 <style scoped>
     .messages {
+        max-width: 100%;
+
         overflow-y: scroll;
         padding: 1rem;
     }

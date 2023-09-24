@@ -93,6 +93,16 @@
         }
     }
 
+    .chat-preview__details {
+        width: 100%;
+        overflow-x: hidden;
+
+        p {
+            max-width: 100%;
+            overflow: hidden;
+        }
+    }
+
     .selected-chat {
         background-color: $alt-secondary-color-hover;
     }
