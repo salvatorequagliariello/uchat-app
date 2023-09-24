@@ -23,7 +23,7 @@
 </template>
 
 
-<style scoped>
+<style scoped lang="scss">
     .messages {
         max-width: 100%;
 
