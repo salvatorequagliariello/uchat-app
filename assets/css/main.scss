@@ -1,7 +1,28 @@
-/* variables */
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&family=Manrope:wght@200;300;400;500;600;700&display=swap');
 
-    $primary-color: #0A171F;
-    $secondary-color: #3E4649;
-    $accent-color: #1471D9;
-    $alt-secondary-color: #202D35;
+/* variables */
+$primary-color: #151518;
+
+$secondary-color: #15202C;
+$secondary-color-hover: #273442;
+
+$text-color: #d5d5d5;
+$text-hover-color: #949494;
+
+$accent-color: #1471D9;
+$accent-color-hover: #0c4e98;
+
+$alt-secondary-color: #1C1C21;
+$alt-secondary-color-hover: #2d2d31;
+
+$error-color: #b42326;
+
+$primary-font: 'Manrope', sans-serif;
+
+
+
+* {
+    font-family: $primary-font;
+}
+
 
