@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { Message } from '~/types/types';
+import { Icon } from '@iconify/vue';
 
     const message: Ref<Message> = ref({ 
         text: null, 
@@ -32,15 +33,23 @@ import { Message } from '~/types/types';
             placeholder="Type something..." 
         />
         <div class="chat-input__send">
-            <input 
+            <div>
+                <input 
                 type="file" 
                 accept="image/*" 
                 @change="onFileChanged($event)"  
                 id="inputFile"
                 ref="myFileInput"
                 :key="fileinputkey"
-            />
-            <button @click="handleSendMessage">Send</button>
+                />
+                <label for="inputFile">
+                    <Icon v-if="message.img" icon="mdi:image-check-outline" class="icon" />
+                    <Icon v-else icon="uil:image-upload" class="icon"/>
+                </label>
+            </div>
+            <button @click="handleSendMessage">
+                <Icon icon="material-symbols:send" class="icon" />
+            </button>
         </div>
     </div>
 </template>
@@ -53,13 +62,13 @@ import { Message } from '~/types/types';
 
         border-bottom-right-radius: 1rem;
         background-color: $secondary-color;
-        padding: 1.5rem;
+        padding: 1.2rem;
 
         display: flex;
         gap: 1rem;
     }
 
-    input {
+    input[type=text] {
         flex: 1.50;
 
         border: $alt-secondary-color-hover solid 2px;
@@ -78,6 +87,55 @@ import { Message } from '~/types/types';
     .chat-input__send {
         flex: 0.50;
         display: flex;
+        align-items: center;
+        justify-content: flex-end;
+
+        gap: 1rem;
+
+
+        input[type=file] {
+            display: none;
+        }
+    
+        label {
+            display: flex;
+            align-items: center;
+            background-color: $alt-secondary-color;
+            border-radius: 100%;
+            border-style: none;
+
+            padding: 0.5rem;
+            
+            &:hover {
+                background-color: $alt-secondary-color-hover;
+                cursor: pointer;
+            }
+    
+            .icon {
+                width: 25px;
+                height: 25px;
+                color: $accent-color;
+            }
+        }
+
+        button {
+            background-color: $alt-secondary-color;
+            border-radius: 100%;
+            border-style: none;
+
+            padding: 0.5rem;
+
+            &:hover {
+                background-color: $alt-secondary-color-hover;
+                cursor: pointer;
+            }
+
+            .icon {
+                width: 25px;
+                height: 25px;
+                color: $accent-color;
+            }
+        }
     }
 
 </style>
