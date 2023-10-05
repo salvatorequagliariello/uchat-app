@@ -5,8 +5,7 @@ import { Message } from '~/types/types';
         text: null, 
         img: null
     });
-    const fileinputkey = ref(0);
-
+    const fileinputkey: Ref<number> = ref(0);
 
     const onFileChanged = function ($event: Event): void {
         const target =  <HTMLInputElement>$event.target;
@@ -47,12 +46,14 @@ import { Message } from '~/types/types';
 </template>
 
 
-<style scoped>
+<style scoped lang="scss">
+@import '~/assets/css/main.scss';
     .chat-input__container {
-        box-sizing: border-box;
         width: 100%;
-        background-color: grey;
-        padding: 1rem;
+
+        border-bottom-right-radius: 1rem;
+        background-color: $secondary-color;
+        padding: 1.5rem;
 
         display: flex;
         gap: 1rem;
@@ -60,6 +61,18 @@ import { Message } from '~/types/types';
 
     input {
         flex: 1.50;
+
+        border: $alt-secondary-color-hover solid 2px;
+        background-color: $alt-secondary-color;
+        color: $text-color;
+
+        padding: 0.5rem 1rem;
+        border-radius: 1rem;
+
+        &:focus {
+            outline: none !important;
+            border: $accent-color solid 2px;
+        }
     }
 
     .chat-input__send {

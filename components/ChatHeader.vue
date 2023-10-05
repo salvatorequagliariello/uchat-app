@@ -36,21 +36,19 @@ import { UserConversation } from '~/types/types';
         justify-content: space-between;
         align-items: center;
 
-        border-bottom-left-radius: 1rem;
         border-top-right-radius: 1rem;
-        border-bottom-right-radius: 1rem;
 
         background-color: $secondary-color;
 
         button {
-            background-color: $secondary-color;
+            background-color: $alt-secondary-color;
             border-radius: 100%;
             border-style: none;
 
             padding: 0.5rem;
 
             &:hover {
-                background-color: $secondary-color-hover;
+                background-color: $alt-secondary-color-hover;
                 cursor: pointer;
             }
 

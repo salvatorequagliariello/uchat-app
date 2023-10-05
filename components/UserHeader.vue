@@ -38,7 +38,6 @@ import { Icon } from '@iconify/vue';
 
         border-bottom-left-radius: 1rem;
         border-top-left-radius: 1rem;
-        border-bottom-right-radius: 1rem;
         background-color: $accent-color;
         color: $text-color;
 
