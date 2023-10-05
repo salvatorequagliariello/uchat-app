@@ -13,7 +13,9 @@ import { User } from 'firebase/auth';
         <div class="chats-container" v-if="userDetails">
             <div class="chats-container__header">
                 <UserHeader :user="userDetails" />
-                <UsersSearch />
+                <div class="search-container">
+                    <UsersSearch />
+                </div>
             </div>
             <ChatsPreview />
         </div>
@@ -56,7 +58,6 @@ import { User } from 'firebase/auth';
 
     .chats-container__header {
         width: 100%;
-        padding: 1.5rem;
 
         display: flex;
         flex-direction: column;
@@ -66,6 +67,10 @@ import { User } from 'firebase/auth';
         border-top-left-radius: 1rem;
         border-bottom-left-radius: 1rem;
         border-bottom-right-radius: 1rem;
+    }
+
+    .search-container {
+        padding: 1rem;
     }
     
     .chat-view {

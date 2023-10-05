@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { Auth } from 'firebase/auth';
 import { NuxtApp } from 'nuxt/app';
+import { MessageObj } from '~/types/types';
 
     const props = defineProps({
         message: {

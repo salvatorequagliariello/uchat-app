@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { Message } from '~/types/types';
+
     const message: Ref<Message> = ref({ 
         text: null, 
         img: null

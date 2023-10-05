@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue';
+import { UserFormObj } from '~/types/types';
 
     const formProps = defineProps({
         type: {
@@ -30,7 +31,7 @@ import { Icon } from '@iconify/vue';
         };
     };
 
-    const invalid = "invalid";
+    const invalid: string = "invalid";
 </script>
 
 <template>

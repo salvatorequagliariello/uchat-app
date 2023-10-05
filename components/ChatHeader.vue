@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue';
+import { UserConversation } from '~/types/types';
 
-    const chatInfo = <any>userConversation().value;
-    const closeChat = () => {
+    const chatInfo: UserConversation = userConversation().value;
+    const closeChat = (): void => {
         chatInfo.chatId = null;
         chatInfo.conversation = null;
         chatInfo.user = null;
@@ -13,7 +14,7 @@ import { Icon } from '@iconify/vue';
 
 <template>
     <div class="chat-header">
-        <div class="chat-header__user">
+        <div class="chat-header__user" v-if="chatInfo.user">
             <img :src="chatInfo.user[`photoURL`]" />
             <p>{{ chatInfo.user.displayName }}</p>
         </div>
@@ -28,14 +29,18 @@ import { Icon } from '@iconify/vue';
 @import '~/assets/css/main.scss';
     .chat-header {
         width: 100%;
-        height: 70px;
+        height: 80px;
+        padding: 1rem;
 
         display: flex;
         justify-content: space-between;
         align-items: center;
 
-        border-radius: 1rem;
-        background-color: $alt-secondary-color;
+        border-bottom-left-radius: 1rem;
+        border-top-right-radius: 1rem;
+        border-bottom-right-radius: 1rem;
+
+        background-color: $secondary-color;
 
         button {
             background-color: $secondary-color;
