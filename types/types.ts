@@ -42,3 +42,8 @@ interface MessageObj {
     text: string | null,
     date: Date
 }
+
+interface MobileChatViewObj {
+    open: boolean,
+    mobileView: boolean
+}

@@ -32,17 +32,7 @@
         background-color: $alt-secondary-color;
     }
     .app {
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%,  -50%);
-
-        width: 900px;
-        height: 600px;
-
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        width: 100%;
 
         background-color: $primary-color;
         border-radius: 1rem;
@@ -55,7 +45,7 @@
         justify-content: flex-start;
 
         height: 100%;
-        width: 320px;
+        width: 100%
     }
 
     .chats-container__header {
@@ -73,7 +63,41 @@
     }
     
     .chat-view {
-        width: 580px;
-        height: 100%;
+        display: none;
+    }
+
+    @media (min-width: 900px) {
+        .app {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%,  -50%);
+    
+            width: 900px;
+            height: 600px;
+    
+            display: flex;
+            align-items: center;
+            justify-content: center;
+    
+            background-color: $primary-color;
+            border-radius: 1rem;
+        }
+
+        .chats-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+    
+            height: 100%;
+            width: 320px;
+        }
+
+        .chat-view {
+            display: flex;
+            width: 580px;
+            height: 100%;
+        }
     }
 </style>

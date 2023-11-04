@@ -37,6 +37,8 @@ import { Icon } from '@iconify/vue';
         border-radius: 1rem;
         background-color: $alt-secondary-color;
 
+        padding: 1rem;
+
         button {
             background-color: $secondary-color;
             border-radius: 100%;

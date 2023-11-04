@@ -56,6 +56,8 @@ import { NuxtApp } from 'nuxt/app';
 
         background-color: $accent-color;
         padding: 8px;
+
+        border-radius: 4px;
     }
 
     .content-sent {
