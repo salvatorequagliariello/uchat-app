@@ -1,11 +1,11 @@
 <script setup lang="ts">
-    import { Auth } from "firebase/auth";
     import { DocumentData, Firestore, doc, onSnapshot } from "firebase/firestore";
     import { NuxtApp } from "nuxt/app";
 
     const nuxt: NuxtApp = useNuxtApp();
     const db = <Firestore>nuxt.$firestore;
 
+    const mobileChatView = getChatView().value;    
     const currentUser = useFirebaseUser().value;
     const selectedChat = userConversation();
     const chats = ref();
@@ -25,6 +25,7 @@
     const changeSelectedChat = (user: DocumentData) => {
         selectedChat.value.user = user;
         selectedUserId.value = user.uid;
+        mobileChatView.open = true;
         
         if (currentUser) {
             selectedChat.value.chatId = currentUser.uid > user.uid ? currentUser.uid + user.uid : user.uid + currentUser.uid;

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-    const chatInfo = <any>userConversation().value;
+    const chatInfo: any = userConversation().value;
 </script>
 
 
