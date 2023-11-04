@@ -1,7 +1,6 @@
 import { Firestore, collection, getDocs, query, where } from "firebase/firestore";
 import { NuxtApp } from "nuxt/app";
 
-
 export default async function getUsers (userName: string) {
     const nuxt: NuxtApp = useNuxtApp();
     const db = <Firestore>nuxt.$firestore;
