@@ -4,7 +4,7 @@
 
     const nuxt: NuxtApp = useNuxtApp();
     const db = <Firestore>nuxt.$firestore;
-  
+
     const currentUser = useFirebaseUser().value;
     const selectedChat = userConversation();
     const chats = ref();
@@ -30,8 +30,7 @@
         };
         
         getChatData();
-   };
-        
+   };     
 </script>
 
 
@@ -44,11 +43,14 @@
             class="user-preview"
             :class="chat[1].userInfo.uid == selectedChat.user?.uid && selected"
         >
+        <NuxtLink to="/chats">
+
             <img :src="chat[1].userInfo.photoURL" />
             <div class="chat-preview__details">
                 <p class="user-name">{{ chat[1].userInfo.displayName }}</p>
                 <p>{{ chat[1].lastMessage["text"] }}</p>
             </div>
+        </NuxtLink>
         </li>
     </ul>
 </template>
