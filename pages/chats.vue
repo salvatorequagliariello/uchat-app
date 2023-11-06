@@ -1,5 +1,9 @@
 <script setup lang="ts">
     const chatInfo: any = userConversation().value;
+
+    if (useBreakpoints().width.value >= 900) {
+        navigateTo("/index");
+    }
 </script>
 
 
@@ -8,9 +12,6 @@
         <ChatHeader />
         <ChatMessages :conversation="chatInfo.conversation" />
         <ChatInput />
-    </div>
-    <div v-else>
-        <p>add a chat</p>
     </div>
 </template>
 
