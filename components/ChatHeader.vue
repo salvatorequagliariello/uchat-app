@@ -17,9 +17,6 @@ import { Icon } from '@iconify/vue';
             <img :src="chatInfo.user[`photoURL`]" />
             <p>{{ chatInfo.user.displayName }}</p>
         </div>
-        <!-- <button @click="closeChat" class="desktop-button">
-            <Icon icon="material-symbols:close" class="icon"/>
-        </button> -->
         <button @click="closeChat" class="mobile-button">
             <NuxtLink to="/">
                 <Icon icon="material-symbols:close" class="icon"/>
