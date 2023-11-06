@@ -9,8 +9,8 @@
 <template>
         <div class="homepage">
             <div class="app">
-                <div class="chats-container" v-if="userDetails">
-                    <div class="chats-container__header">
+                <div class="chats-container">
+                    <div class="chats-container__header" v-if="userDetails">
                         <UserHeader :user="userDetails" />
                         <UsersSearch />
                     </div>
@@ -39,7 +39,6 @@
     }
 
     .chats-container {
-        display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: flex-start;
@@ -52,7 +51,6 @@
         width: 100%;
         padding: 1.5rem;
 
-        display: flex;
         flex-direction: column;
         gap: 1rem;
         background-color: $secondary-color;
@@ -66,7 +64,15 @@
         display: none;
     }
 
-    @media (min-width: 900px) {
+    .open {
+        display: flex !important;
+    }
+
+    .closed {
+        display: none;
+    }
+
+    /* @media (min-width: 900px) {
         .app {
             position: absolute;
             left: 50%;
@@ -99,5 +105,5 @@
             width: 580px;
             height: 100%;
         }
-    }
+    } */
 </style>

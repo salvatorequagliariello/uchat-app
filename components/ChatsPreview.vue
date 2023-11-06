@@ -25,7 +25,7 @@
     const changeSelectedChat = (user: DocumentData) => {
         selectedChat.value.user = user;
         selectedUserId.value = user.uid;
-        mobileChatView.open = true;
+        mobileChatView.open = true;        
         
         if (currentUser) {
             selectedChat.value.chatId = currentUser.uid > user.uid ? currentUser.uid + user.uid : user.uid + currentUser.uid;

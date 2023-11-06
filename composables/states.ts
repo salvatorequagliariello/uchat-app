@@ -17,8 +17,3 @@ export const userConversation = () => useState("userConversation", () => ({
                                         }));
 
 export const useFirebaseUser = () => useState<User | void>("firebaseUser", () => {});
-
-export const getChatView = () => useState<MobileChatViewObj>("chatView", () => ({
-                                            open: false,
-                                            mobileView: useBreakpoints().isMobile.value
-                                        }));

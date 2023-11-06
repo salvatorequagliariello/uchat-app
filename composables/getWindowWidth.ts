@@ -8,12 +8,12 @@ export const useBreakpoints = () => {
   onUnmounted(() => window.removeEventListener('resize', onWidthChange))
   
   const isMobile = computed(() => {
-    if (windowWidth.value > 600) return false;
+    if (windowWidth.value < 600) return true;
 
-    return true;
+    return false;
   })
 
   const width = computed(() => windowWidth.value)
 
-  return { isMobile }
+  return { isMobile, width }
 }
