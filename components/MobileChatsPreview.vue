@@ -40,6 +40,7 @@
             v-for="chat in chats" 
             :key="chat[1].userInfo.uid" 
             @click="changeSelectedChat(chat[1].userInfo)"
+            class="user-preview__container"
             :class="chat[1].userInfo.uid == selectedChat.user?.uid && selected"
         >
             <NuxtLink to="/chats" class="user-preview">
@@ -68,14 +69,11 @@
         padding: 1rem;
         overflow-y: auto;
     }
-    .user-preview {
+    .user-preview__container {
         width: 100%;
         height: 70px;
 
         overflow: hidden;
-
-        display: flex;
-        align-items: center;
 
         background-color: $alt-secondary-color;
         color: $text-color;
@@ -86,6 +84,10 @@
             background-color: $alt-secondary-color-hover;
             cursor: pointer;
         }
+    }
+    .user-preview {
+        display: flex;
+        align-items: center;
 
         img {
             width: 50px;

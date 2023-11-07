@@ -101,8 +101,6 @@
 
         .user-panel {
             width: 30%;
-
-            border-right: 2px solid $accent-color-hover;
         }
     }
 </style>

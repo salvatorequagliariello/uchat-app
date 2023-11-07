@@ -25,6 +25,8 @@
     }
     
     .chat-view {
+        height: 100%;
+        
         display: flex;
         flex-direction: column;
         justify-content: space-between;        

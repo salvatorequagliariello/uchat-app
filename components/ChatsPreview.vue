@@ -36,43 +36,50 @@
 
 
 <template>
-    <ul class="chats-preview">
-        <li 
-            v-for="chat in chats" 
-            :key="chat[1].userInfo.uid" 
-            @click="changeSelectedChat(chat[1].userInfo)" 
-            class="user-preview"
-            :class="chat[1].userInfo.uid == selectedChat.user?.uid && selected"
-        >
-            <img :src="chat[1].userInfo.photoURL" />
-            <div class="chat-preview__details">
-                <p class="user-name">{{ chat[1].userInfo.displayName }}</p>
-                <p>{{ chat[1].lastMessage["text"] }}</p>
-            </div>
-        </li>
-    </ul>
+    <div class="chats-preview">
+        <h2>Chats</h2>
+        <ul class="chats-list">
+            <li 
+                v-for="chat in chats" 
+                :key="chat[1].userInfo.uid" 
+                @click="changeSelectedChat(chat[1].userInfo)" 
+                class="user-preview"
+                :class="chat[1].userInfo.uid == selectedChat.user?.uid && selected"
+            >
+                <img :src="chat[1].userInfo.photoURL" />
+                <div class="chat-preview__details">
+                    <p class="user-name">{{ chat[1].userInfo.displayName }}</p>
+                    <p>{{ chat[1].lastMessage["text"] }}</p>
+                </div>
+            </li>
+        </ul>
+    </div>
 </template>
 
 
 <style scoped lang="scss">
 @import '~/assets/css/main.scss';
-
     .chats-preview {
+        width: 100%;
+        padding: 1rem;
+
+        overflow-y: auto;
+        color: $text-color;
+    }
+    .chats-list {
+        margin-top: 0.5rem;
         width: 100%;
 
         display: flex;
         flex-direction: column;
-        gap: 1rem;
 
-        margin-top: 1rem;
-        padding: 1rem;
-        overflow-y: auto;
+        gap: 1rem;
     }
     .user-preview {
         width: 100%;
         height: 70px;
 
-        overflow: hidden;
+        overflow-x: hidden;
 
         display: flex;
         align-items: center;
