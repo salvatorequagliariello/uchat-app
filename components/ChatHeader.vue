@@ -17,11 +17,11 @@ import { Icon } from '@iconify/vue';
             <img :src="chatInfo.user[`photoURL`]" />
             <p>{{ chatInfo.user.displayName }}</p>
         </div>
-        <button @click="closeChat" class="mobile-button">
-            <NuxtLink to="/">
+        <NuxtLink to="/">
+            <button @click="closeChat" class="mobile-button">
                 <Icon icon="material-symbols:close" class="icon"/>
-            </NuxtLink>
-        </button>
+            </button>
+        </NuxtLink>
     </div>
 </template>
 

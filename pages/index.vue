@@ -56,7 +56,7 @@
 
     .user-panel {
         height: 100%;
-        width: 30%;
+        width: 100%;
 
         display: flex;
         flex-direction: column;
@@ -88,7 +88,7 @@
         background-position: center;
     }
 
-    @media (min-width: 900px) {
+    @media (min-width: 600px) {
         .desktop-homepage {
             display: block;
             width: 100%;
@@ -100,6 +100,8 @@
         }
 
         .user-panel {
+            width: 30%;
+
             border-right: 2px solid $accent-color-hover;
         }
     }

@@ -39,18 +39,16 @@
         <li 
             v-for="chat in chats" 
             :key="chat[1].userInfo.uid" 
-            @click="changeSelectedChat(chat[1].userInfo)" 
-            class="user-preview"
+            @click="changeSelectedChat(chat[1].userInfo)"
             :class="chat[1].userInfo.uid == selectedChat.user?.uid && selected"
         >
-        <NuxtLink to="/chats">
-
-            <img :src="chat[1].userInfo.photoURL" />
-            <div class="chat-preview__details">
-                <p class="user-name">{{ chat[1].userInfo.displayName }}</p>
-                <p>{{ chat[1].lastMessage["text"] }}</p>
-            </div>
-        </NuxtLink>
+            <NuxtLink to="/chats" class="user-preview">
+                <img :src="chat[1].userInfo.photoURL" />
+                <div class="chat-preview__details">
+                    <p class="user-name">{{ chat[1].userInfo.displayName }}</p>
+                    <p>{{ chat[1].lastMessage["text"] }}</p>
+                </div>
+            </NuxtLink>
         </li>
     </ul>
 </template>
