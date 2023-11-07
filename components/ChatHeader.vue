@@ -37,7 +37,7 @@ import { Icon } from '@iconify/vue';
         align-items: center;
 
         border-radius: 1rem;
-        background-color: $alt-secondary-color;
+        background-color: $secondary-color;
 
         padding: 1rem;
 
