@@ -47,9 +47,11 @@
     }
     .app {
         width: 100%;
+        max-height: 100%;
 
-        background-color: $primary-color;
-        border-radius: 1rem;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
     }
 
     .chats-container {
@@ -74,46 +76,27 @@
         border-bottom-right-radius: 1rem;
     }
 
-    .app {
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%,  -50%);
-
-        width: 900px;
-        height: 600px;
-
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        background-color: $primary-color;
-        border-radius: 1rem;
-    }
-
     .chats-container {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: flex-start;
 
-        height: 100%;
-        width: 320px;
+        max-height: 100%;
+        width: 30%;
     }
 
     .chat-view {
         display: flex;
-        width: 580px;
-        height: 100%;
+        width: 70%;
+        max-height: 100%;
     }
 
     @media (min-width: 900px) {
         .desktop-homepage {
             display: block;
             width: 100%;
-            height: 100vh;
-    
-            background-color: $alt-secondary-color;
+            height: 100%;
         }
 
         .mobile-homepage {
