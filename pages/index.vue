@@ -10,8 +10,8 @@
     <div class="mobile-homepage">
         <router-view></router-view>
         <div class="app">
-            <div class="chats-container">
-                <div class="chats-container__header" v-if="userDetails">
+            <div class="user-panel">
+                <div class="user-panel__header" v-if="userDetails">
                     <UserHeader :user="userDetails" />
                     <UsersSearch />
                 </div>
@@ -21,8 +21,8 @@
     </div>
     <div class="desktop-homepage">
         <div class="app">
-            <div class="chats-container">
-                <div class="chats-container__header" v-if="userDetails">
+            <div class="user-panel">
+                <div class="user-panel__header" v-if="userDetails">
                     <UserHeader :user="userDetails" />
                     <UsersSearch />
                 </div>
@@ -54,37 +54,29 @@
         justify-content: center;
     }
 
-    .chats-container {
-        flex-direction: column;
-        align-items: center;
-        justify-content: flex-start;
-
+    .user-panel {
         height: 100%;
-        width: 100%;
+        width: 30%;
 
-        background-color: $secondary-color;
-    }
-
-    .chats-container__header {
-        width: 100%;
-        padding: 1.5rem;
-
-        flex-direction: column;
-        gap: 1rem;
-
-        border-top-left-radius: 1rem;
-        border-bottom-left-radius: 1rem;
-        border-bottom-right-radius: 1rem;
-    }
-
-    .chats-container {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: flex-start;
 
-        max-height: 100%;
-        width: 30%;
+        background-color: $secondary-color;
+    }
+
+    .user-panel__header {
+        width: 100%;
+        padding: 1rem 1.5rem;
+
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+
+        background-color: $accent-color;
+        border-bottom-left-radius: 1rem;
+        border-bottom-right-radius: 1rem;
     }
 
     .chat-view {
@@ -105,6 +97,10 @@
 
         .mobile-homepage {
             display: none;
+        }
+
+        .user-panel {
+            border-right: 2px solid $accent-color-hover;
         }
     }
 </style>
