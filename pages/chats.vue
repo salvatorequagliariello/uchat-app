@@ -1,9 +1,5 @@
 <script setup lang="ts">
     const chatInfo: any = userConversation().value;
-
-    if (useBreakpoints().width.value >= 900) {
-        navigateTo("/index");
-    }
 </script>
 
 
