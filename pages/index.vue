@@ -88,7 +88,7 @@
         background-position: center;
     }
 
-    @media (min-width: 600px) {
+    @media (min-width: $breakpoint-tablet) {
         .desktop-homepage {
             display: block;
             width: 100%;
@@ -100,7 +100,21 @@
         }
 
         .user-panel {
+            width: 37%;
+        }
+
+        .chat-view {
+            width: 63%;
+        }
+    }
+
+    @media (min-width: $breakpoint-tablet-xl) {
+        .user-panel {
             width: 30%;
+        }
+
+        .chat-view {
+            width: 70%;
         }
     }
 </style>
