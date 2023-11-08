@@ -35,23 +35,26 @@
 
 
 <template>
-    <ul class="chats-preview">
-        <li 
-            v-for="chat in chats" 
-            :key="chat[1].userInfo.uid" 
-            @click="changeSelectedChat(chat[1].userInfo)"
-            class="user-preview__container"
-            :class="chat[1].userInfo.uid == selectedChat.user?.uid && selected"
-        >
-            <NuxtLink to="/chats" class="user-preview">
-                <img :src="chat[1].userInfo.photoURL" />
-                <div class="chat-preview__details">
-                    <p class="user-name">{{ chat[1].userInfo.displayName }}</p>
-                    <p>{{ chat[1].lastMessage["text"] }}</p>
-                </div>
-            </NuxtLink>
-        </li>
-    </ul>
+    <div class="chats-preview">
+        <h2>Chats</h2>
+        <ul class="chats-list">
+            <li 
+                v-for="chat in chats" 
+                :key="chat[1].userInfo.uid" 
+                @click="changeSelectedChat(chat[1].userInfo)"
+                class="user-preview__container"
+                :class="chat[1].userInfo.uid == selectedChat.user?.uid && selected"
+            >
+                <NuxtLink to="/chats" class="user-preview">
+                    <img :src="chat[1].userInfo.photoURL" />
+                    <div class="chat-preview__details">
+                        <p class="user-name">{{ chat[1].userInfo.displayName }}</p>
+                        <p>{{ chat[1].lastMessage["text"] }}</p>
+                    </div>
+                </NuxtLink>
+            </li>
+        </ul>
+    </div>
 </template>
 
 
@@ -60,14 +63,19 @@
 
     .chats-preview {
         width: 100%;
+        padding: 1rem;
+
+        overflow-y: auto;
+        color: $text-color;
+    }
+    .chats-list {
+        margin-top: 0.5rem;
+        width: 100%;
 
         display: flex;
         flex-direction: column;
-        gap: 1rem;
 
-        margin-top: 1rem;
-        padding: 1rem;
-        overflow-y: auto;
+        gap: 1rem;
     }
     .user-preview__container {
         width: 100%;
