@@ -7,13 +7,13 @@ export const foundUser = () => useState("foundUser", () => ({
                                             errors: <boolean>false,
                                             found: false,
                                             searchedFor: false
-}));
+                                        }));
 
 export const userConversation = () => useState("userConversation", () => ({
                                             user: <DocumentData | null>null,
                                             conversation: <string[] | undefined | null>null,
                                             chatId: <string | null>null,
                                             errors: <boolean | null>null,
-}));
+                                        }));
 
 export const useFirebaseUser = () => useState<User | void>("firebaseUser", () => {});

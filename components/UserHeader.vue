@@ -34,10 +34,9 @@ import { Icon } from '@iconify/vue';
 
         height: 80px;
         width: 100%;
-        padding: 1rem 1rem;
         border-radius: 1rem;
-        background-color: $accent-color;
         color: $text-color;
+        font-weight: bold;
 
         img {
             height: 55px;

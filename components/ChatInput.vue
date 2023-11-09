@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { Icon } from '@iconify/vue';
+
     const message: Ref<Message> = ref({ 
         text: null, 
         img: null
@@ -45,24 +47,17 @@
 </template>
 
 
-<style scoped>
+<style scoped lang="scss">
+@import '~/assets/css/main.scss';
     .chat-input__container {
-        box-sizing: border-box;
         width: 100%;
-        background-color: grey;
+        display: flex;
+
+        box-sizing: border-box;
+        border-radius: 1rem;
         padding: 1rem;
-
-        display: flex;
-        gap: 1rem;
-    }
-
-    input {
-        flex: 1.50;
-    }
-
-    .chat-input__send {
-        flex: 0.50;
-        display: flex;
+        
+        background-color: $alt-secondary-color;
     }
 
 </style>

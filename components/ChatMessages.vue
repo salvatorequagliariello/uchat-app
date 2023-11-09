@@ -25,7 +25,7 @@
 
 <style scoped lang="scss">
     .messages {
-        max-width: 100%;
+        width: 100%;
 
         overflow-y: scroll;
         padding: 1rem;

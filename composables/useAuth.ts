@@ -33,7 +33,6 @@ export default function useAuth() {
     }
   });
 
-
   const login = async ({ email, password }: UserFormObj) => {
     errorBag.value = {
       authErrors: {

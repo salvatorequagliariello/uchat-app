@@ -19,19 +19,16 @@ import uchatLogo from "~/assets/images/uchat-logo.png";
 @import '~/assets/css/main.scss';
     .sign-up-page {
         width: 100%;
-        height: 100vh;
         background-color: $alt-secondary-color;
     }
 
     .form-container {
-        width: 500px;
+        width: 100%;
         position: absolute;
         left: 50%;
         top: 50%;
         transform: translate(-50%, -50%);
-        background-color: $primary-color;
         padding: 2rem;
-        border-radius: 1rem;
     }
 
     .form-header {
@@ -50,6 +47,17 @@ import uchatLogo from "~/assets/images/uchat-logo.png";
         p {
             color: $accent-color;
             font-size: 2rem;
+        }
+    }
+
+    @media (min-width: $breakpoint-tablet) {
+        .form-container {
+            width: 500px;
+
+            padding: 2rem;
+            border-radius: 1rem;
+
+            background-color: $alt-secondary-color;
         }
     }
 </style>

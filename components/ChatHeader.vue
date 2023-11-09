@@ -17,9 +17,11 @@ import { Icon } from '@iconify/vue';
             <img :src="chatInfo.user[`photoURL`]" />
             <p>{{ chatInfo.user.displayName }}</p>
         </div>
-        <button @click="closeChat">
-            <Icon icon="material-symbols:close" class="icon"/>
-        </button>
+        <NuxtLink to="/">
+            <button @click="closeChat" class="mobile-button">
+                <Icon icon="material-symbols:close" class="icon"/>
+            </button>
+        </NuxtLink>
     </div>
 </template>
 
@@ -35,7 +37,9 @@ import { Icon } from '@iconify/vue';
         align-items: center;
 
         border-radius: 1rem;
-        background-color: $alt-secondary-color;
+        background-color: $secondary-color;
+
+        padding: 1rem;
 
         button {
             background-color: $secondary-color;
@@ -48,7 +52,6 @@ import { Icon } from '@iconify/vue';
                 background-color: $secondary-color-hover;
                 cursor: pointer;
             }
-
             .icon {
                 width: 20px;
                 height: 20px;
