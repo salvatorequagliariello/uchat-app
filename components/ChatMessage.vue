@@ -51,13 +51,15 @@ import { NuxtApp } from 'nuxt/app';
     }
 
     .message-img {
-        width: 70%;
+        max-width: 70%;
         max-height: min-content;
 
         background-color: $accent-color;
         padding: 8px;
+        margin: 5px 0;
 
         img {
+            max-width: 100%;
             border-radius: 4px;
         }
     }
@@ -89,13 +91,13 @@ import { NuxtApp } from 'nuxt/app';
         }
 
         .message-img {
-            width: 60%;
+            max-width: 60%;
         }
     }
 
     @media (min-width: $breakpoint-tablet-xl) {
         .message-img {
-            width: 40%;
+            max-width: 40%;
         }
     }
 </style>
