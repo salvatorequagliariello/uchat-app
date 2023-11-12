@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { Auth } from 'firebase/auth';
 import { NuxtApp } from 'nuxt/app';
-import { MessageObj } from '~/types/types';
 
     const props = defineProps({
         message: {
@@ -29,7 +28,9 @@ import { MessageObj } from '~/types/types';
             >
                 {{ message.text }}
             </p>
-            <img class="message-img" v-if="message.img" :src="message.img" :class="[ isMessageSent ? `content-sent` : `content-received` ]"/>
+            <div class="message-img" v-if="message.img" :class="[ isMessageSent ? `content-sent` : `content-received` ]">
+                <img :src="message.img" />
+            </div>
         </div>
     </div>
 </template>
@@ -41,24 +42,27 @@ import { MessageObj } from '~/types/types';
         width: 100%;
         display: flex;
     }
-    
     .message-text {
-        max-width: 50%;
+        max-width: 70%;
         padding: 5px;
         height: min-content;
         margin: 5px 0;
         color: $text-color;
     }
-    
+
     .message-img {
-        margin: 5px 0;
-        width: 40%;
+        max-width: 70%;
         max-height: min-content;
 
         background-color: $accent-color;
         padding: 8px;
-    }
+        margin: 5px 0;
 
+        img {
+            max-width: 100%;
+            border-radius: 4px;
+        }
+    }
     .content-sent {
         background-color: $accent-color;
 
@@ -74,12 +78,26 @@ import { MessageObj } from '~/types/types';
         border-top-left-radius: 8px;
         border-bottom-right-radius: 8px;
     }
-
     .sent {
         justify-content: end;
     }
-    
     .received {
         justify-content: start;
+    }
+
+    @media (min-width: $breakpoint-tablet) {
+        .message-text {
+            max-width: 60%;
+        }
+
+        .message-img {
+            max-width: 60%;
+        }
+    }
+
+    @media (min-width: $breakpoint-tablet-xl) {
+        .message-img {
+            max-width: 40%;
+        }
     }
 </style>

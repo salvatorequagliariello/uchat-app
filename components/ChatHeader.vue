@@ -1,9 +1,8 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue';
-import { UserConversation } from '~/types/types';
 
-    const chatInfo: UserConversation = userConversation().value;
-    const closeChat = (): void => {
+    const chatInfo = <any>userConversation().value;
+    const closeChat = () => {
         chatInfo.chatId = null;
         chatInfo.conversation = null;
         chatInfo.user = null;
@@ -14,13 +13,15 @@ import { UserConversation } from '~/types/types';
 
 <template>
     <div class="chat-header">
-        <div class="chat-header__user" v-if="chatInfo.user">
+        <div class="chat-header__user">
             <img :src="chatInfo.user[`photoURL`]" />
             <p>{{ chatInfo.user.displayName }}</p>
         </div>
-        <button @click="closeChat">
-            <Icon icon="material-symbols:close" class="icon"/>
-        </button>
+        <NuxtLink to="/">
+            <button @click="closeChat" class="mobile-button">
+                <Icon icon="material-symbols:close" class="icon"/>
+            </button>
+        </NuxtLink>
     </div>
 </template>
 
@@ -29,29 +30,28 @@ import { UserConversation } from '~/types/types';
 @import '~/assets/css/main.scss';
     .chat-header {
         width: 100%;
-        height: 80px;
-        padding: 1rem;
+        height: 70px;
 
         display: flex;
         justify-content: space-between;
         align-items: center;
 
-        border-top-right-radius: 1rem;
-
+        border-radius: 1rem;
         background-color: $secondary-color;
 
+        padding: 1rem;
+
         button {
-            background-color: $alt-secondary-color;
+            background-color: $secondary-color;
             border-radius: 100%;
             border-style: none;
 
             padding: 0.5rem;
 
             &:hover {
-                background-color: $alt-secondary-color-hover;
+                background-color: $secondary-color-hover;
                 cursor: pointer;
             }
-
             .icon {
                 width: 20px;
                 height: 20px;

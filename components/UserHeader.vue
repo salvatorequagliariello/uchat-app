@@ -28,18 +28,15 @@ import { Icon } from '@iconify/vue';
 <style scoped lang="scss">
 @import '~/assets/css/main.scss';
     .user-header {
-        height: 80px;
-        padding: 1rem;
-        width: 100%;
-        
         display: flex;
         align-items: center;
         justify-content: space-between;
 
-        border-bottom-left-radius: 1rem;
-        border-top-left-radius: 1rem;
-        background-color: $accent-color;
+        height: 80px;
+        width: 100%;
+        border-radius: 1rem;
         color: $text-color;
+        font-weight: bold;
 
         img {
             height: 55px;

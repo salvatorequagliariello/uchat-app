@@ -4,7 +4,7 @@
 
     const nuxt: NuxtApp = useNuxtApp();
     const db = <Firestore>nuxt.$firestore;
-  
+
     const currentUser = useFirebaseUser().value;
     const selectedChat = userConversation();
     const chats = ref();
@@ -30,8 +30,7 @@
         };
         
         getChatData();
-   };
-        
+   };     
 </script>
 
 
@@ -42,15 +41,17 @@
             <li 
                 v-for="chat in chats" 
                 :key="chat[1].userInfo.uid" 
-                @click="changeSelectedChat(chat[1].userInfo)" 
-                class="user-preview"
+                @click="changeSelectedChat(chat[1].userInfo)"
+                class="user-preview__container"
                 :class="chat[1].userInfo.uid == selectedChat.user?.uid && selected"
             >
-                <img :src="chat[1].userInfo.photoURL" />
-                <div class="chat-preview__details">
-                    <p class="user-name">{{ chat[1].userInfo.displayName }}</p>
-                    <p>{{ chat[1].lastMessage["text"] }}</p>
-                </div>
+                <NuxtLink to="/chats" class="user-preview">
+                    <img :src="chat[1].userInfo.photoURL" />
+                    <div class="chat-preview__details">
+                        <p class="user-name">{{ chat[1].userInfo.displayName }}</p>
+                        <p>{{ chat[1].lastMessage["text"] }}</p>
+                    </div>
+                </NuxtLink>
             </li>
         </ul>
     </div>
@@ -59,6 +60,7 @@
 
 <style scoped lang="scss">
 @import '~/assets/css/main.scss';
+
     .chats-preview {
         width: 100%;
         padding: 1rem;
@@ -75,14 +77,11 @@
 
         gap: 1rem;
     }
-    .user-preview {
+    .user-preview__container {
         width: 100%;
         height: 70px;
 
-        overflow-x: hidden;
-
-        display: flex;
-        align-items: center;
+        overflow: hidden;
 
         background-color: $alt-secondary-color;
         color: $text-color;
@@ -93,6 +92,10 @@
             background-color: $alt-secondary-color-hover;
             cursor: pointer;
         }
+    }
+    .user-preview {
+        display: flex;
+        align-items: center;
 
         img {
             width: 50px;

@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { MessageObj } from '~/types/types';
-
     const props = defineProps({
         conversation: {
             type: Array<MessageObj>

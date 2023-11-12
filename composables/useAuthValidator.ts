@@ -1,4 +1,4 @@
-import { string, z } from "zod";
+import { z } from "zod";
 
 export default function useAuthValidator({ email, password, name, image }: UserFormObj, type: string) {
     let body;

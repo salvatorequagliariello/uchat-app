@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { Message } from '~/types/types';
 import { Icon } from '@iconify/vue';
+import { Message } from '~/types/types';
 
     const message: Ref<Message> = ref({ 
         text: null, 
         img: null
     });
-    const fileinputkey: Ref<number> = ref(0);
+    const fileinputkey = ref(0);
 
     const onFileChanged = function ($event: Event): void {
         const target =  <HTMLInputElement>$event.target;
@@ -59,13 +59,13 @@ import { Icon } from '@iconify/vue';
 @import '~/assets/css/main.scss';
     .chat-input__container {
         width: 100%;
-
-        border-bottom-right-radius: 1rem;
-        background-color: $secondary-color;
-        padding: 1.2rem;
-
         display: flex;
-        gap: 1rem;
+
+        box-sizing: border-box;
+        border-radius: 1rem;
+        padding: 1rem;
+        
+        background-color: $alt-secondary-color;
     }
 
     input[type=text] {
@@ -137,5 +137,4 @@ import { Icon } from '@iconify/vue';
             }
         }
     }
-
 </style>

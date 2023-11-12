@@ -1,13 +1,11 @@
-import { DocumentData } from "firebase/firestore";
-
-export interface UserFormObj {
+interface UserFormObj {
     name?: string,
     email: string,
     password: string,
     image?: File | Blob | Uint8Array | ArrayBuffer | undefined
 }
 
-export interface ErrorBagObj {
+interface ErrorBagObj {
     authErrors: {
         email: null | string,
         password: null | string,
@@ -28,33 +26,19 @@ export interface ErrorBagObj {
     }
 }
 
-export interface Message {
+interface Message {
     text: string | null,
     img: File | Blob | Uint8Array | ArrayBuffer | null | any
 }
 
-export interface InputFileEvent extends Event {
+interface InputFileEvent extends Event {
     target: HTMLInputElement;
 }
 
-export interface MessageObj {
+interface MessageObj {
     id: string,
     img?: string | null,
     senderId: string,
     text: string | null,
     date: Date
-}
-
-export interface ChatUser {
-    userDetails: DocumentData,
-    errors: boolean,
-    found: boolean,
-    searchedFor: boolean
-}
-
-export interface UserConversation {
-    user: DocumentData | null,
-    conversation: string[] | null,
-    chatId: string | null,
-    errors: boolean | null
 }

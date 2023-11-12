@@ -1,5 +1,5 @@
 import { Auth } from "firebase/auth";
-import { DocumentData, DocumentReference, Firestore, Query, doc, getDoc, serverTimestamp, setDoc, updateDoc } from "firebase/firestore";
+import { DocumentData, Firestore, doc, getDoc, serverTimestamp, setDoc, updateDoc } from "firebase/firestore";
 import { NuxtApp } from "nuxt/app";
 
 export default async function addUser(newUser: DocumentData) {
