@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue';
+import { Message } from '~/types/types';
 
     const message: Ref<Message> = ref({ 
         text: null, 
@@ -59,6 +60,84 @@ import { Icon } from '@iconify/vue';
     .chat-input__container {
         width: 100%;
         display: flex;
+
+        box-sizing: border-box;
+        border-radius: 1rem;
+        padding: 0.5rem;
+        
+        background-color: $alt-secondary-color;
+    }
+
+    input[type=text] {
+        flex: 1.3;
+
+        border: $alt-secondary-color-hover solid 2px;
+        background-color: $alt-secondary-color;
+        color: $text-color;
+
+        padding: 0.5rem 1rem;
+        border-radius: 1rem;
+
+        &:focus {
+            outline: none !important;
+            border: $accent-color solid 2px;
+        }
+    }
+
+    .chat-input__send {
+        flex: 0.7;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+
+        gap: 1rem;
+
+
+        input[type=file] {
+            display: none;
+        }
+    
+        label {
+            display: flex;
+            align-items: center;
+            background-color: $alt-secondary-color;
+            border-radius: 100%;
+            border-style: none;
+
+            padding: 0.5rem;
+            
+            &:hover {
+                background-color: $alt-secondary-color-hover;
+                cursor: pointer;
+            }
+    
+            .icon {
+                width: 25px;
+                height: 25px;
+                color: $accent-color;
+            }
+        }
+
+        button {
+            background-color: $alt-secondary-color;
+            border-radius: 100%;
+            border-style: none;
+
+            padding: 0.5rem;
+
+            &:hover {
+                background-color: $alt-secondary-color-hover;
+                cursor: pointer;
+            }
+
+            .icon {
+                width: 25px;
+                height: 25px;
+                color: $accent-color;
+
+                flex-: 1;
+            }
+        }
     }
 
     @media (min-width: $breakpoint-tablet-xl) {

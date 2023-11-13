@@ -3,6 +3,8 @@
 /* variables */
 $breakpoint-tablet: 600px;
 $breakpoint-tablet-xl: 950px;
+$breakpoint-desktop-xxl: 1921px;
+$breakpoint-desktop-xxl-height: 1080px;
 
 $primary-color: #151518;
 $secondary-color: #15202C;
@@ -22,3 +24,8 @@ $primary-font: 'Manrope', sans-serif;
 }
 
 body {
+    background-color: #1C1C21;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 1000'%3E%3Cg %3E%3Ccircle fill='%231C1C21' cx='50' cy='0' r='50'/%3E%3Cg fill='%231c202a' %3E%3Ccircle cx='0' cy='50' r='50'/%3E%3Ccircle cx='100' cy='50' r='50'/%3E%3C/g%3E%3Ccircle fill='%231b2533' cx='50' cy='100' r='50'/%3E%3Cg fill='%231b293d' %3E%3Ccircle cx='0' cy='150' r='50'/%3E%3Ccircle cx='100' cy='150' r='50'/%3E%3C/g%3E%3Ccircle fill='%231a2d46' cx='50' cy='200' r='50'/%3E%3Cg fill='%231a314f' %3E%3Ccircle cx='0' cy='250' r='50'/%3E%3Ccircle cx='100' cy='250' r='50'/%3E%3C/g%3E%3Ccircle fill='%231a3658' cx='50' cy='300' r='50'/%3E%3Cg fill='%23193a61' %3E%3Ccircle cx='0' cy='350' r='50'/%3E%3Ccircle cx='100' cy='350' r='50'/%3E%3C/g%3E%3Ccircle fill='%23193e6b' cx='50' cy='400' r='50'/%3E%3Cg fill='%23184274' %3E%3Ccircle cx='0' cy='450' r='50'/%3E%3Ccircle cx='100' cy='450' r='50'/%3E%3C/g%3E%3Ccircle fill='%2318477d' cx='50' cy='500' r='50'/%3E%3Cg fill='%23184b86' %3E%3Ccircle cx='0' cy='550' r='50'/%3E%3Ccircle cx='100' cy='550' r='50'/%3E%3C/g%3E%3Ccircle fill='%23174f8f' cx='50' cy='600' r='50'/%3E%3Cg fill='%23175399' %3E%3Ccircle cx='0' cy='650' r='50'/%3E%3Ccircle cx='100' cy='650' r='50'/%3E%3C/g%3E%3Ccircle fill='%231658a2' cx='50' cy='700' r='50'/%3E%3Cg fill='%23165cab' %3E%3Ccircle cx='0' cy='750' r='50'/%3E%3Ccircle cx='100' cy='750' r='50'/%3E%3C/g%3E%3Ccircle fill='%231660b4' cx='50' cy='800' r='50'/%3E%3Cg fill='%231564bd' %3E%3Ccircle cx='0' cy='850' r='50'/%3E%3Ccircle cx='100' cy='850' r='50'/%3E%3C/g%3E%3Ccircle fill='%231569c7' cx='50' cy='900' r='50'/%3E%3Cg fill='%23146dd0' %3E%3Ccircle cx='0' cy='950' r='50'/%3E%3Ccircle cx='100' cy='950' r='50'/%3E%3C/g%3E%3Ccircle fill='%231471D9' cx='50' cy='1000' r='50'/%3E%3C/g%3E%3C/svg%3E");
+    background-attachment: fixed;
+    background-size: contain;
+}
