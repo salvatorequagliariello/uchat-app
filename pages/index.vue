@@ -118,7 +118,19 @@
         }
     }
 
-    @media (min-width: $breakpoint-desktop-xxl) {
+    @media (min-width: $breakpoint-desktop-xxl) and (max-height: $breakpoint-desktop-xxl-height) {
+        .app {
+            width: 1920px;
+            height: 100vh;
+
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translate(-50%);
+        }
+    }
+
+    @media (min-width: $breakpoint-desktop-xxl) and (min-height: $breakpoint-desktop-xxl-height){
         .app {
             width: 1920px;
             height: 1080px;
