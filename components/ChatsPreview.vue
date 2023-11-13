@@ -66,6 +66,7 @@
         overflow-y: auto;
         color: $text-color;
     }
+
     .chats-list {
         margin-top: 0.5rem;
         width: 100%;
@@ -75,6 +76,7 @@
 
         gap: 1rem;
     }
+    
     .user-preview {
         width: 100%;
         height: 70px;

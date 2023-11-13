@@ -24,11 +24,18 @@
 
 
 <style scoped lang="scss">
+@import '~/assets/css/main.scss';
     .messages {
         width: 100%;
 
         overflow-y: scroll;
-        padding: 1rem;
+        padding: 0.2rem;
+    }
+
+    @media (min-width: $breakpoint-tablet-xl) {
+        .messages {
+            padding: 1rem;
+        }
     }
 </style>
 

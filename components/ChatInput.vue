@@ -7,7 +7,6 @@ import { Icon } from '@iconify/vue';
     });
     const fileinputkey = ref(0);
 
-
     const onFileChanged = function ($event: Event): void {
         const target =  <HTMLInputElement>$event.target;
         if (target && target.files) {
@@ -33,15 +32,23 @@ import { Icon } from '@iconify/vue';
             placeholder="Type something..." 
         />
         <div class="chat-input__send">
-            <input 
+            <div>
+                <input 
                 type="file" 
                 accept="image/*" 
                 @change="onFileChanged($event)"  
                 id="inputFile"
                 ref="myFileInput"
                 :key="fileinputkey"
-            />
-            <button @click="handleSendMessage">Send</button>
+                />
+                <label for="inputFile">
+                    <Icon v-if="message.img" icon="mdi:image-check-outline" class="icon" />
+                    <Icon v-else icon="uil:image-upload" class="icon"/>
+                </label>
+            </div>
+            <button @click="handleSendMessage">
+                <Icon icon="material-symbols:send" class="icon" />
+            </button>
         </div>
     </div>
 </template>
@@ -52,12 +59,72 @@ import { Icon } from '@iconify/vue';
     .chat-input__container {
         width: 100%;
         display: flex;
-
-        box-sizing: border-box;
-        border-radius: 1rem;
-        padding: 1rem;
-        
-        background-color: $alt-secondary-color;
     }
 
+    @media (min-width: $breakpoint-tablet-xl) {
+        .chat-input__container {
+            width: 100%;
+            display: flex;
+    
+            box-sizing: border-box;
+            border-radius: 1rem;
+            padding: 1rem;
+        }
+    
+        input[type=text] {
+            flex: 1.50;
+    
+            border: $alt-secondary-color-hover solid 2px;
+    
+            padding: 0.5rem 1rem;
+            border-radius: 1rem;
+    
+            &:focus {
+                outline: none !important;
+                border: $accent-color solid 2px;
+            }
+        }
+    
+        .chat-input__send {
+            flex: 0.50;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+    
+            gap: 1rem;
+    
+    
+            input[type=file] {
+                display: none;
+            }
+        
+            label {
+                display: flex;
+                align-items: center;
+                border-radius: 100%;
+                border-style: none;
+    
+                padding: 0.5rem;
+        
+                .icon {
+                    width: 25px;
+                    height: 25px;
+                }
+            }
+    
+            button {
+                border-radius: 100%;
+                border-style: none;
+    
+                padding: 0.5rem;
+    
+                .icon {
+                    width: 25px;
+                    height: 25px;
+    
+                    flex-: 1;
+                }
+            }
+        }
+    }
 </style>
