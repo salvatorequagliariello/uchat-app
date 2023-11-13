@@ -76,7 +76,7 @@
 
         gap: 1rem;
     }
-
+    
     .user-preview {
         width: 100%;
         height: 70px;
@@ -102,7 +102,6 @@
             margin-right: 1rem;
         }
     }
-
     .chat-preview__details {
         max-width: 90%;
         max-height: 90%;
@@ -113,7 +112,6 @@
             font-weight: 600;
         }
     }
-
     .selected-chat {
         background-color: $alt-secondary-color-hover;
     }
