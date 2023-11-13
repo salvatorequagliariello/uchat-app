@@ -20,6 +20,7 @@ import uchatLogo from "~/assets/images/uchat-logo.png";
         width: 100%;
         background-color: $alt-secondary-color;
     }
+
     .form-container {
         width: 100%;
         position: absolute;
@@ -28,6 +29,7 @@ import uchatLogo from "~/assets/images/uchat-logo.png";
         transform: translate(-50%, -50%);
         padding: 2rem;
     }
+    
     .form-header {
         display: flex;
         justify-content: center;
