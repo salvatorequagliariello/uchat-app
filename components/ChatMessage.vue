@@ -42,6 +42,7 @@ import { NuxtApp } from 'nuxt/app';
         width: 100%;
         display: flex;
     }
+
     .message-text {
         max-width: 70%;
         padding: 5px;
@@ -63,6 +64,7 @@ import { NuxtApp } from 'nuxt/app';
             border-radius: 4px;
         }
     }
+
     .content-sent {
         background-color: $accent-color;
 
@@ -78,9 +80,11 @@ import { NuxtApp } from 'nuxt/app';
         border-top-left-radius: 8px;
         border-bottom-right-radius: 8px;
     }
+
     .sent {
         justify-content: end;
     }
+
     .received {
         justify-content: start;
     }

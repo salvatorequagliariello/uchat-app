@@ -68,6 +68,7 @@
         overflow-y: auto;
         color: $text-color;
     }
+
     .chats-list {
         margin-top: 0.5rem;
         width: 100%;
@@ -77,6 +78,7 @@
 
         gap: 1rem;
     }
+
     .user-preview__container {
         width: 100%;
         height: 70px;
@@ -93,6 +95,7 @@
             cursor: pointer;
         }
     }
+
     .user-preview {
         display: flex;
         align-items: center;
@@ -103,11 +106,12 @@
             margin-right: 1rem;
         }
     }
+
     .chat-preview__details {
         max-width: 90%;
         max-height: 90%;
 
-        overflow: hidden;
+        overflow-x: hidden;
 
         .user-name {
             font-weight: 600;
