@@ -3,6 +3,7 @@
 /* variables */
 $breakpoint-tablet: 600px;
 $breakpoint-tablet-xl: 950px;
+$breakpoint-desktop-xxl: 1921px;
 
 $primary-color: #151518;
 $secondary-color: #15202C;
@@ -22,7 +23,5 @@ $primary-font: 'Manrope', sans-serif;
 }
 
 body {
-    background-color: $primary-color;
+    background-color: $secondary-color-hover;
 }
-
-

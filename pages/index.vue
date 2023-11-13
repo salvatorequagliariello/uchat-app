@@ -117,4 +117,30 @@
             width: 70%;
         }
     }
+
+    @media (min-width: $breakpoint-desktop-xxl) {
+        .app {
+            width: 1920px;
+            height: 1080px;
+
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .user-panel {
+            border-bottom-left-radius: 1rem;
+            border-top-left-radius: 1rem;
+        }
+        
+        .user-panel__header {
+            border-top-left-radius: 1rem;
+        }
+
+        .chat-view {
+            border-top-right-radius: 1rem;            
+            border-bottom-right-radius: 1rem;            
+        }
+    }
 </style>
