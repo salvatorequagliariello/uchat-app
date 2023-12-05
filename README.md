@@ -30,11 +30,11 @@ Built with NuxtJS and Firebase, and styled with ScSS, uChat offers a seamless an
 <br>
 
 ## Overview
-Developed with VUE and NuxtJS, and written in TypeScript, uChat offers a powerful, efficient and free platform for users to chat with their friends and loved ones. With its sleek and modern design, styled with SCSS, uChat provides an aesthetically pleasing and intuitive user experience. 
+Developed with [Vue.js](https://vuejs.org/) and [NuxtJS](https://nuxt.com/), and written [TypeScript](https://www.typescriptlang.org/), uChat offers a powerful, efficient and free platform for users to chat with their friends and loved ones. With its sleek and modern design, styled with [SCSS](https://sass-lang.com/), uChat provides an aesthetically pleasing and intuitive user experience. 
 
-uChat's authentication system is custom-made. This ensures a secure and personalized login experience for users. By leveraging the power of Firebase and VUE, uChat securely stores user data, providing peace of mind and easy access to information. 
+uChat's authentication system is custom-made. This ensures a secure and personalized login experience for users. By leveraging the power of [Firebase](https://firebase.google.com/) and [Vue.js](https://vuejs.org/), uChat securely stores user data, providing peace of mind and easy access to information. 
 
-The chat system is also based on a Firebase database and ensures real-time and reliable communication, while images are stored in a Firebase Storage instance. Users can add their friends by simply searching for their user name in the dedicated search bar.
+The chat system is also based on a [Firebase](https://firebase.google.com/) database and ensures real-time and reliable communication, while images are stored in a [Firebase](https://firebase.google.com/) Storage instance. Users can add their friends by simply searching for their user name in the dedicated search bar.
 
 With its user-friendly interface and responsive design, uChat adapts seamlessly to various devices and screen sizes. Whether you're accessing uChat on a desktop, tablet, or mobile device, the app guarantees an optimal user experience
 
