@@ -5,7 +5,7 @@
   uChat 💬
 </h1>
 
-Built with NuxtJS and Firebase, and styled with ScSS, uChat offers a seamless and feature-rich platform for users to engage in text messaging and image sharing. With its secure authentication system and complete responsiveness, uChat provides a modern and visually appealing interface.
+Built with [NuxtJS](https://nuxt.com/) and [Firebase](https://firebase.google.com/), and styled with [SCSS](https://sass-lang.com/), uChat offers a seamless and feature-rich platform for users to engage in text messaging and image sharing. With its secure authentication system and complete responsiveness, uChat provides a modern and visually appealing interface.
 
 <br>
 
