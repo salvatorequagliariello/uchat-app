@@ -49,4 +49,20 @@ With its user-friendly interface and responsive design, uChat adapts seamlessly 
 <br>
 
 ## Showcase
+![Nuovo progetto](https://github.com/salvatorequagliariello/uchat-app/assets/109867120/fe7752a6-e305-4844-b368-72ebf180bed7)
+> The sign-in and sing-up pages, both in desktop and mobile version. The responsiveness of uChat allows ease of use on any kind of device.
+
+<br>
+
+![Nuovo progetto (1)](https://github.com/salvatorequagliariello/uchat-app/assets/109867120/7c3a284e-7110-406d-b87f-b81a6fdb4acb)
+> The uChat main page display the list of all conversations, including the names and profile pictures of the added contacts. The page also include options to search for specific users and add them. In the desktop view, the right panel is the chat view. Users can click on a chat to open it and view the conversation history or write a new message. 
+
+<br>
+
+![Nuovo progetto (2)](https://github.com/salvatorequagliariello/uchat-app/assets/109867120/20490990-eb46-47e3-8277-6209369f9209)
+> The chat view in desktop and mobile layout and the users search bar in action.
+
+<br>
+
+
 
