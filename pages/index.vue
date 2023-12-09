@@ -14,7 +14,7 @@
                     <UserHeader :user="userDetails" />
                     <UsersSearch />
                 </div>
-                <!-- <MobileChatsPreview /> -->
+                <MobileChatsPreview />
             </div>
         </div>
     </div>

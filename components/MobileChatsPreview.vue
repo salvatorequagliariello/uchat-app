@@ -49,7 +49,8 @@
                     <img :src="chat[1].userInfo.photoURL" />
                     <div class="chat-preview__details">
                         <p class="user-name">{{ chat[1].userInfo.displayName }}</p>
-                        <p>{{ chat[1].lastMessage["text"] }}</p>
+                        <p v-if="chat[1].lastMessage">{{ chat[1].lastMessage.text }}</p>
+                        <p v-else></p>
                     </div>
                 </NuxtLink>
             </li>
