@@ -113,7 +113,8 @@
         max-width: 90%;
         max-height: 90%;
 
-        overflow-x: hidden;
+        overflow: hidden;
+        white-space: nowrap;
 
         .user-name {
             font-weight: 600;
