@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue';
-import { Message } from '~/types/types';
 
     const message: Ref<Message> = ref({ 
         text: null, 
@@ -69,7 +68,8 @@ import { Message } from '~/types/types';
     }
 
     input[type=text] {
-        flex: 1.3;
+        flex: 1;
+        width: 100%;
 
         border: $alt-secondary-color-hover solid 2px;
         background-color: $alt-secondary-color;
@@ -85,7 +85,9 @@ import { Message } from '~/types/types';
     }
 
     .chat-input__send {
-        flex: 0.7;
+        flex: 1;
+        width: 100%;
+
         display: flex;
         align-items: center;
         justify-content: flex-end;
@@ -135,10 +137,19 @@ import { Message } from '~/types/types';
                 height: 25px;
                 color: $accent-color;
 
-                flex-: 1;
             }
         }
     }
+    
+    @media (min-width: $breakpoint-phone-md) {
+        input[type=text] {
+            flex: 1.30;
+        }
+
+        .chat-input__send {
+            flex: 0.70;
+        }
+     }
 
     @media (min-width: $breakpoint-tablet-xl) {
         .chat-input__container {
@@ -200,8 +211,6 @@ import { Message } from '~/types/types';
                 .icon {
                     width: 25px;
                     height: 25px;
-    
-                    flex-: 1;
                 }
             }
         }

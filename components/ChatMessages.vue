@@ -40,7 +40,7 @@
 
     @media (min-width: $breakpoint-tablet) {
         .messages {
-            height: 100%;
+            height: 100vh;
         }
     }
 

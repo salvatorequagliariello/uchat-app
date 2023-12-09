@@ -58,9 +58,7 @@ import { Icon } from '@iconify/vue';
         display: flex;
         flex-direction: column;
     }
-
     .search-bar {
-        width: 100%;
         display: flex;
         justify-content: space-between;
 
@@ -69,14 +67,13 @@ import { Icon } from '@iconify/vue';
         padding: 0.5rem;
 
         .search-input {
+            width: 70%;
+
             display: flex;
             align-items: center;
-            gap: 0.5rem;
         }
 
         input {
-            flex: 1;
-
             border: none;
             background: none;
             color: $text-color;
@@ -86,12 +83,11 @@ import { Icon } from '@iconify/vue';
         }
 
         button {
-            flex: 1;
+            min-width: 30px;
 
             border: none;
             background: none;
             cursor: pointer;
-
             .icon {
                 width: 20px;
                 height: 20px;
@@ -103,7 +99,6 @@ import { Icon } from '@iconify/vue';
             }
         }
     }
-    
     .search-result {
         width: 100%;
         margin: 1rem auto 0;
@@ -132,7 +127,6 @@ import { Icon } from '@iconify/vue';
                 background-color: $accent-color-hover;
                 cursor: pointer;
             }
-            
             .icon {
                 width: 20px;
                 height: 20px;
@@ -145,7 +139,6 @@ import { Icon } from '@iconify/vue';
         margin-left: 1rem;
         margin-top: 1rem;
     }
-    
     .search-result__details {
         display: flex;
         align-items: center;
