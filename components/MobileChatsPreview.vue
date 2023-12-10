@@ -49,7 +49,8 @@
                     <img :src="chat[1].userInfo.photoURL" />
                     <div class="chat-preview__details">
                         <p class="user-name">{{ chat[1].userInfo.displayName }}</p>
-                        <p>{{ chat[1].lastMessage["text"] }}</p>
+                        <p v-if="chat[1].lastMessage">{{ chat[1].lastMessage.text }}</p>
+                        <p v-else></p>
                     </div>
                 </NuxtLink>
             </li>
@@ -102,6 +103,7 @@
 
         img {
             width: 50px;
+            height: 50px;
             border-radius: 100%;
             margin-right: 1rem;
         }
@@ -111,7 +113,8 @@
         max-width: 90%;
         max-height: 90%;
 
-        overflow-x: hidden;
+        overflow: hidden;
+        white-space: nowrap;
 
         .user-name {
             font-weight: 600;

@@ -8,7 +8,6 @@
 
 <template>
     <div class="mobile-homepage">
-        <router-view></router-view>
         <div class="app">
             <div class="user-panel">
                 <div class="user-panel__header" v-if="userDetails">

@@ -27,9 +27,21 @@
 @import '~/assets/css/main.scss';
     .messages {
         width: 100%;
+        height: 100vh;
+
+        display: flex;
+        flex-direction: column;
+
+        justify-content: end;
 
         overflow-y: scroll;
         padding: 0.2rem;
+    }
+
+    @media (min-width: $breakpoint-tablet) {
+        .messages {
+            height: 100vh;
+        }
     }
 
     @media (min-width: $breakpoint-tablet-xl) {

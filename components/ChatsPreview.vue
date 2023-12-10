@@ -49,7 +49,8 @@
                 <img :src="chat[1].userInfo.photoURL" />
                 <div class="chat-preview__details">
                     <p class="user-name">{{ chat[1].userInfo.displayName }}</p>
-                    <p>{{ chat[1].lastMessage["text"] }}</p>
+                    <p v-if="chat[1].lastMessage">{{ chat[1].lastMessage.text }}</p>
+                    <p v-else></p>
                 </div>
             </li>
         </ul>
@@ -66,7 +67,6 @@
         overflow-y: auto;
         color: $text-color;
     }
-
     .chats-list {
         margin-top: 0.5rem;
         width: 100%;
@@ -76,12 +76,11 @@
 
         gap: 1rem;
     }
-
     .user-preview {
         width: 100%;
         height: 70px;
 
-        overflow-x: hidden;
+        overflow: hidden;
 
         display: flex;
         align-items: center;
@@ -98,22 +97,27 @@
 
         img {
             width: 50px;
+            height: 50px;
             border-radius: 100%;
             margin-right: 1rem;
         }
     }
-
     .chat-preview__details {
         max-width: 90%;
         max-height: 90%;
 
         overflow: hidden;
+        white-space: nowrap;
 
         .user-name {
             font-weight: 600;
         }
-    }
 
+        p {
+            white-space: nowrap;
+            text-wrap: nowrap;
+        }
+    }
     .selected-chat {
         background-color: $alt-secondary-color-hover;
     }

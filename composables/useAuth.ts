@@ -132,15 +132,14 @@ export default function useAuth() {
             });
             
           });
-          
-          navigateTo("/sign-in");
-        }
-        );
+        });
         
-    } catch (error) {
-      errorBag.value.firebaseSignUpErrors.isAnyError = true;
-      errorBag.value.firebaseSignUpErrors.error = error;
-    }
+        navigateTo("/sign-in");
+
+      } catch (error) {
+        errorBag.value.firebaseSignUpErrors.isAnyError = true;
+        errorBag.value.firebaseSignUpErrors.error = error;
+      }
   };
 
   const logout = async () => {

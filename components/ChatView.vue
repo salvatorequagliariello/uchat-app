@@ -18,9 +18,10 @@
 
 
 <style scoped lang="scss">
+@import '~/assets/css/main.scss';
     .chat-view__container {
         width: 100%;
-        height: 100%;
+        height: 100vh;
         padding: 1rem;
     }
     
@@ -35,5 +36,17 @@
     .nochat-view {
         width: 100%;
         height: 100%;
+    }
+
+    @media (min-width: $breakpoint-tablet) {
+        .chat-view__container {
+            width: 100%;
+            height: 100%;
+            padding: 1rem;
+        }
+
+        .chat-view {
+            height: 100%;    
+        }
     }
 </style>

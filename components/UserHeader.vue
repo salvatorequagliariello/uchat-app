@@ -46,6 +46,8 @@ import { Icon } from '@iconify/vue';
         }
 
         button {
+            width: 35px;
+            height: 35px;
             background-color: $secondary-color;
             border-radius: 100%;
             border-style: none;
@@ -58,8 +60,8 @@ import { Icon } from '@iconify/vue';
             }
 
             .icon {
-                width: 20px;
-                height: 20px;
+                width: 100%;
+                height: 100%;
                 color: $text-color;
             }
         }
@@ -70,5 +72,10 @@ import { Icon } from '@iconify/vue';
         justify-content: flex-start;
         align-items: center;
         gap: 1rem;
+        overflow: hidden;
+        
+        p {
+            overflow: hidden;
+        }
     }
 </style>
